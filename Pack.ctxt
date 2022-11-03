@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Pack
+comment0.text=\r\n\ Object\ to\ handle\ pack\ of\ all\ cards\ in\ the\ game\r\n\ Methods\ to\ read\ in\ a\ pack\ file,\ check\ file\ is\ valid\ and\ make\ card\r\n\ instances\r\n\r\n\ @Jessie\ McColm\ and\ Lucia\ Adams\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Pack()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Pack\r\n
+comment2.params=fileName\ nPlayers
+comment2.target=void\ readPackFile(java.lang.String,\ int)
+comment2.text=\r\n\ Reads\ file\ (fileName)\ if\ it\ is\ valid\ and\ creates\ insatnces\ of\r\n\ cards\ and\ adds\ to\ cardList\r\n\r\n\ @param\ \ fileName\ \ name\ of\ pack\ file\ to\ be\ read\r\n\ @param\ \ nplayers\ number\ of\ players\r\n\ @return\ \ \ None\r\n
+comment3.params=
+comment3.target=void\ checkFileValidity()
+comment3.text=\r\n\ Checks\ file\ is\ valid\ -\ ie\ single\ non-negative\ integer\r\n\ value,\ and\ has\ 8n\ rows\r\n\r\n\ @param\ fileName\ name\ of\ file\ to\ check\ validity\ of\r\n\ @param\ nplayers\ number\ of\ players\ to\ check\ the\ file\ is\ valid\ for\r\n\ @return\ valid\ \ boolean\ of\ whether\ pack\ is\ valid\ or\ not\r\n\r\n\ if\ learn\ reflection-\ make\ private\r\n
+comment4.params=
+comment4.target=boolean\ getValidity()
+comment5.params=
+comment5.target=java.util.ArrayList\ getCardList()
+comment5.text=\r\n\ Method\ is\ getter\ for\ cardList\r\n\r\n\ @param\ \ None\r\n\ @return\ \ \ cardList\ ArrayList\ of\ Card\ objects\ in\ the\ pack\r\n
+numComments=6

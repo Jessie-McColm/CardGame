@@ -15,11 +15,14 @@ import java.io.IOException;
 public class Pack
 {
     private ArrayList<Card> cardList = new ArrayList<Card>();
+    private String fileName;
+    private int nPlayers;
+    private boolean valid;
 
     /**
      * Constructor for objects of class Pack
      */
-    public Pack(){}
+    public Pack(){this.valid=false;}
 
     /**
      * Reads file (fileName) if it is valid and creates insatnces of
@@ -29,9 +32,12 @@ public class Pack
      * @param  nplayers number of players
      * @return   None
      */
-    public void readPackFile(String fileName, int nplayers)
+    public void readPackFile(String fileName, int nPlayers)
     {
-        if (checkFileValidity(fileName, nplayers)){
+        this.fileName=fileName;
+        this.nPlayers=nPlayers;
+        checkFileValidity();
+        if (valid){
           try{
             File file = new File(fileName);
             FileInputStream fis = new FileInputStream(file);
@@ -65,8 +71,8 @@ public class Pack
      *
      * if learn reflection- make private
      */
-    private static boolean checkFileValidity(String fileName, int nplayers){
-        boolean valid = true;
+    private void checkFileValidity(){
+        boolean isValid = true;
         int fileLines = 0;
 
         try{
@@ -80,23 +86,26 @@ public class Pack
             try{
               num = Integer.parseInt(line);
             } catch (NumberFormatException e){
-              valid = false;
+              isValid = false;
             }
             fileLines += 1;
           }
           br.close();
         } catch (IOException e){
           // issue reading file
-          valid = false;
+          isValid = false;
         }
 
-        if (fileLines != 8*nplayers){
-          valid = false;
+        if (fileLines != 8*nPlayers){
+          isValid = false;
         }
 
-        return valid;
+        this.valid=isValid;
     }
-
+    
+    public boolean getValidity(){
+        return this.valid;
+    }
 
     /**
      * Method is getter for cardList

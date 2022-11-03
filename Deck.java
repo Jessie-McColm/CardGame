@@ -44,13 +44,15 @@ public class Deck {
      */
     public Card removeCard()
     {
+        Card cardToReturn= null; 
         // how are we handling if list is empty as get index error
         try{
-          Card cardToReturn = cardList.remove(cardList.size()-1);
-          return cardToReturn;
+          cardToReturn = cardList.remove(cardList.size()-1);
+          
         } catch (Exception e){
           e.printStackTrace();
         }
+        return cardToReturn;
     }
 
     /**
