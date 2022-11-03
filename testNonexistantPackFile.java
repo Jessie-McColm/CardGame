@@ -30,16 +30,16 @@ public class testNonexistantPackFile
     {
         String filename = "IamNotReal.txt";
         Pack testPack= new Pack();
-        
+
     }
-    
-    
+
+
     @Test
     public void test()
     {
-        assert 
+        //assert 
     }
-    
+
     /**
      * Tears down the test fixture.
      *

@@ -1,13 +1,12 @@
 
 /**
- * Write a description of class Card here.
+ * Object acting as a card in the game, storing a value of its face
  *
- * @author (your name)
+ * @Jessie McColm and Lucia Adams
  * @version (a version number or a date)
  */
-public class Card
-{
-    // instance variables - replace the example below with your own
+public class Card {
+
     private int cardValue;
 
     /**
@@ -15,18 +14,29 @@ public class Card
      */
     public Card(int value)
     {
-        cardValue=value; 
+        cardValue = value;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Getter for the value of the card
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  None
+     * @return  int cardValue   the value of the card
      */
     public int getCardValue()
     {
-        
         return cardValue;
     }
+
+    /**
+     * To String method that returns String of value on card
+     *
+     * @param  None
+     * @return  String cardValue  the value of the card
+     */
+    @Override
+    public String toString(){
+      return String.valueOf(cardValue);
+    }
+
 }

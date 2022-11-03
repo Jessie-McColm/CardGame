@@ -1,82 +1,111 @@
 
 /**
- * Write a description of class Deck here.
+ * Object acting as deck of cards. Consists of list of cards it stores
+ * and methods to add and remove cards
  *
- * @author (your name)
+ * @Jessie McColm and Lucia Adams
  * @version (a version number or a date)
  */
 
 import java.util.ArrayList;
-public class Deck
-{
-    // instance variables - replace the example below with your own
+public class Deck {
+
     private int deckID;
+    // start of list is bottom of deck, end of list is top
     private ArrayList<Card> cardList = new ArrayList<Card>();
-    
+
+    private String deckFile = String.format("deck$d_output.txt", deckID);
 
     /**
      * Constructor for objects of class Deck
      */
     public Deck(int ID)
     {
-        deckID=ID;
+        deckID = ID;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Method to add Card object to the Deck list (to bottom of deck)
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  cardName  Card object to add
+     * @return    none
      */
     public void addCard(Card cardName)
     {
-        
+      // check whether full of not done in Player
+      cardList.add(0, cardName);
     }
-    
+
     /**
-     * An example of a method - replace this comment with your own
+     * Method to remove Card object from the Deck list (from top of deck)
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  None
+     * @return cardToReturn Card object removed from deck
      */
     public Card removeCard()
     {
-        return cardToReturn;
+        // how are we handling if list is empty as get index error
+        try{
+          Card cardToReturn = cardList.remove(cardList.size()-1);
+          return cardToReturn;
+        } catch (Exception e){
+          e.printStackTrace();
+        }
     }
-    
+
     /**
-     * An example of a method - replace this comment with your own
+     * Method to output deck content to file named after deckID
+     * at the end of the game
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  None
+     * @return  None
      */
-    public void endGame()
-    {
-        
+    public void endGame(){
+
+        String textFileString;
+        ArrayList<String> cardListContent = new ArrayList<String>();
+
+        for (Card cardItem : cardList){
+          cardListContent.add(cardItem.toString());
+        }
+
+        textFileString = String.format("deck%d contents: ",deckID);
+        textFileString += String.join(" ", cardListContent);
+
+        // then output to deckFile
     }
-    
+
     /**
-     * An example of a method - replace this comment with your own
+     * Method to check whether the deck is empty (True if empty)
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param None
+     * @return isEmpty boolean whether the deck is empty or not
      */
-    public boolean isDeckEmpty()
-    {
-       return isEmpty; 
+    public boolean isDeckEmpty(){
+
+       boolean isEmpty;
+
+       if (cardList.size() == 0){isEmpty = true;
+       } else { isEmpty = false;}
+
+       return isEmpty;
     }
-    
+
     /**
-     * An example of a method - replace this comment with your own
+     * Method to check whether the deck is full (True if full)
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  None
+     * @return   isFull boolean whether the deck is full or not
      */
-    public boolean isDeckFull()
-    {
-       return isFull; 
+    public boolean isDeckFull(){
+
+      boolean isFull;
+
+      if (cardList.size() >= 4){isFull = true;
+      } else { isFull = false;}
+       return isFull;
     }
-    
-    
-    
+
+
+
 }
