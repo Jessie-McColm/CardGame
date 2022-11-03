@@ -8,13 +8,23 @@
  */
 
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+
 public class Deck {
 
     private int deckID;
     // start of list is bottom of deck, end of list is top
     private ArrayList<Card> cardList = new ArrayList<Card>();
 
-    private String deckFile = String.format("deck$d_output.txt", deckID);
+    private String deckFile;
+
+
+    public int getDeckID(){
+      return deckID;
+    }
 
     /**
      * Constructor for objects of class Deck
@@ -22,6 +32,7 @@ public class Deck {
     public Deck(int ID)
     {
         deckID = ID;
+        deckFile = String.format("deck$d_output.txt", deckID);
     }
 
     /**
@@ -44,11 +55,11 @@ public class Deck {
      */
     public Card removeCard()
     {
-        Card cardToReturn= null; 
+        Card cardToReturn= null;
         // how are we handling if list is empty as get index error
         try{
           cardToReturn = cardList.remove(cardList.size()-1);
-          
+
         } catch (Exception e){
           e.printStackTrace();
         }
@@ -71,10 +82,19 @@ public class Deck {
           cardListContent.add(cardItem.toString());
         }
 
-        textFileString = String.format("deck%d contents: ",deckID);
+        textFileString = String.format("deck %d contents: ",deckID);
         textFileString += String.join(" ", cardListContent);
 
-        // then output to deckFile
+        try {
+          FileWriter fileToWrite = new FileWriter(deckFile);
+          BufferedWriter ouput = new BufferedWriter(fileToWrite);
+          output.write(textFileString);
+          output.close();
+
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+
     }
 
     /**
