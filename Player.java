@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 /**
  * Write a description of class Player here.
  *
@@ -41,7 +45,7 @@ public class Player implements Runnable
 
       try {
         FileWriter fileToWrite = new FileWriter(playerFile);
-        BufferedWriter ouput = new BufferedWriter(fileToWrite);
+        BufferedWriter output = new BufferedWriter(fileToWrite);
         output.write(stringToWrite);
         output.close();
 
@@ -91,7 +95,7 @@ public class Player implements Runnable
      */
     public void win(){
 
-      String winMessage = String.format("player %d wins", playerID)
+      String winMessage = String.format("player %d wins", playerID);
       System.out.print(winMessage);
       endGame(winMessage);
 
@@ -107,7 +111,7 @@ public class Player implements Runnable
     public void loss(int winnerID){
 
       String lossMessage = String.format(
-      "player %d has informed player %d that player %d has won", winnerID, playerID, winnerID)
+      "player %d has informed player %d that player %d has won", winnerID, playerID, winnerID);
 
       endGame(lossMessage);
 
@@ -146,7 +150,7 @@ public class Player implements Runnable
 
       String textFileString;
 
-      if (pickDeck.isFull()){
+      if (pickDeck.isDeckFull()){
 
         Card pickedCard = pickDeck.removeCard();
 

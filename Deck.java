@@ -87,7 +87,7 @@ public class Deck {
 
         try {
           FileWriter fileToWrite = new FileWriter(deckFile);
-          BufferedWriter ouput = new BufferedWriter(fileToWrite);
+          BufferedWriter output = new BufferedWriter(fileToWrite);
           output.write(textFileString);
           output.close();
 
