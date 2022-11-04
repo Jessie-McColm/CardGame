@@ -21,11 +21,6 @@ public class Deck {
 
     private String deckFile;
 
-
-    public int getDeckID(){
-      return deckID;
-    }
-
     /**
      * Constructor for objects of class Deck
      */
@@ -33,6 +28,10 @@ public class Deck {
     {
         deckID = ID;
         deckFile = String.format("deck$d_output.txt", deckID);
+    }
+
+    public int getDeckID(){
+      return deckID;
     }
 
     /**
