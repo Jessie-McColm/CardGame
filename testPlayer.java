@@ -126,6 +126,8 @@ public class testPlayer
           }
     }
     
+    
+    //need to double cj=heck these - should be failing i think rn
     @Test
     public void testLoss(){
         Deck testDeck1 = new Deck(1);
@@ -159,7 +161,7 @@ public class testPlayer
     public void tearDown()
     {
         try{
-            File fileToDelete = new File("deck1_output.txt");
+            File fileToDelete = new File("player1_output.txt");
             fileToDelete.delete();
         }catch(Exception e) {
             
