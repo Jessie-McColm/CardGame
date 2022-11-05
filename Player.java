@@ -28,7 +28,7 @@ public class Player implements Runnable
         playerID = playID;
         dropDeck = dropper;
         pickDeck = picker;
-        playerFile = String.format("player$d_output.txt", playerID);
+        playerFile = String.format("player%d_output.txt", playerID);
     }
 
     public int getPlayerID(){
@@ -54,7 +54,19 @@ public class Player implements Runnable
       }
 
     }
-
+    
+    /**
+     * Method to add Card object to the Deck list (to bottom of deck)
+     *
+     * @param  cardName  Card object to add
+     * @return    none
+     */
+    public void addCard(Card cardName)
+    {
+      // check whether full of not done in Player
+      hand.add(0, cardName);
+    }
+    
     /**
      * Checks if all cards in player hand have the same value
      * Player wins the game if they do
@@ -63,7 +75,7 @@ public class Player implements Runnable
      * @param  None
      * @return  None
      */
-    public void checkVictory(){
+    public boolean checkVictory(){
 
       boolean hasWon = true;
       int firstCard;
@@ -80,7 +92,8 @@ public class Player implements Runnable
       } else {
         hasWon = false;
       }
-
+      return hasWon;
+    
       // stop all theads immediately after player wins
       // call event to end threads etc and output to files
       // should store the winner or winner ID
@@ -209,17 +222,7 @@ public class Player implements Runnable
         return hand;
     }
     
-    /**
-     * Method to add Card object to the Deck list (to bottom of deck)
-     *
-     * @param  cardName  Card object to add
-     * @return    none
-     */
-    public void addCard(Card cardName)
-    {
-      // check whether full of not done in Player
-      hand.add(0, cardName);
-    }
+    
 
 
     /**

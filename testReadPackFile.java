@@ -41,7 +41,7 @@ public class testReadPackFile
     public void validPackTest() throws Exception
     {
         Pack testPack= new Pack();
-        testPack.readPackFile("validPack.txt",2);
+        testPack.readPackFile("./packFiles/validPack.txt",2);
         ArrayList<Card> testCardList = testPack.getCardList();
         int[] cards = {1,4,88,99,5,65,76,43,86,34,56,3,7,5,56,33};
         ArrayList<Card> cardList = new ArrayList<Card>();

@@ -1,9 +1,14 @@
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.After;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 /**
  * The test class testDeck.
@@ -78,8 +83,20 @@ public class testDeck
         testDeck.addCard(testCard2);
         testDeck.addCard(testCard3);
         testDeck.endGame();
+        try{
+            File file = new File("deck1_output.txt");
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+            String line=br.readLine();
+            br.close();
+            assertTrue(line.equals("deck 1 contents: 1 2 1"));
+          } catch (IOException e){
+            e.printStackTrace();
+            assertTrue(false);
+          }
         
-        //need to check some file stuff here - will have to wait to ask lucia about this
+        
         
     }
     
@@ -129,8 +146,14 @@ public class testDeck
      *
      * Called after every test case method.
      */
-    @AfterEach
+    @After
     public void tearDown()
     {
+        try{
+            File fileToDelete = new File("deck1_output.txt");
+            fileToDelete.delete();
+        }catch(Exception e) {
+            
+        }
     }
 }

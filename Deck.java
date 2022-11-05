@@ -27,7 +27,7 @@ public class Deck {
     public Deck(int ID)
     {
         deckID = ID;
-        deckFile = String.format("deck$d_output.txt", deckID);
+        deckFile = String.format("deck%d_output.txt", deckID);
     }
 
     public int getDeckID(){

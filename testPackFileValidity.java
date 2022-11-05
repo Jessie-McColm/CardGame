@@ -49,7 +49,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "validPack.txt");
+        fileName.set(testPack, "./packFiles/validPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);
@@ -68,7 +68,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "longerValidPack.txt");
+        fileName.set(testPack, "./packFiles/longerValidPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 3);
@@ -87,7 +87,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "sortPack.txt");
+        fileName.set(testPack, "./packFiles/sortPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);
@@ -106,7 +106,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "longPack.txt");
+        fileName.set(testPack, "./packFiles/longPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);
@@ -125,7 +125,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "invalidCharPack.txt");
+        fileName.set(testPack, "./packFiles/invalidCharPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);
@@ -144,7 +144,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "zeroPack.txt");
+        fileName.set(testPack, "./packFiles/zeroPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);
@@ -163,7 +163,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "negativePack.txt");
+        fileName.set(testPack, "./packFiles/negativePack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);
@@ -182,7 +182,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "emptyPack.txt");
+        fileName.set(testPack, "./packFiles/emptyPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);
@@ -201,7 +201,7 @@ public class testPackFileValidity
         Class packClass = testPack.getClass();
         Field fileName = packClass.getDeclaredField("fileName");
         fileName.setAccessible(true);
-        fileName.set(testPack, "emptyPack.txt");
+        fileName.set(testPack, "./packFiles/emptyPack.txt");
         Field nPlayers = packClass.getDeclaredField("nPlayers");
         nPlayers.setAccessible(true);
         nPlayers.set(testPack, 2);

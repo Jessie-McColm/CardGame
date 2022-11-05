@@ -85,6 +85,9 @@ public class Pack
           while((line = br.readLine()) != null){
             try{
               num = Integer.parseInt(line);
+              if (num<0){
+                  isValid=false;
+              }
             } catch (NumberFormatException e){
               isValid = false;
             }
