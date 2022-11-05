@@ -33,6 +33,17 @@ public class Deck {
     public int getDeckID(){
       return deckID;
     }
+    
+    /**
+     * 
+     *
+     * @param  none  Card object to add
+     * @return    none
+     */
+    public ArrayList<Card> getCardList()
+    {
+      return cardList;
+    }
 
     /**
      * Method to add Card object to the Deck list (to bottom of deck)

@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.AfterClass;
+import java.util.ArrayList;
 
 /**
  * The test class testReadPackFile.
@@ -12,14 +13,15 @@ import org.junit.AfterClass;
  * @version (a version number or a date)
  */
 public class testReadPackFile
-{
+{   
     /**
      * Default constructor for test class testNonexistantPackFile
      */
+    
     public testReadPackFile()
     {
     }
-
+    
     /**
      * Sets up the test fixture.
      *
@@ -29,7 +31,8 @@ public class testReadPackFile
     public void setUp() throws Exception
     {
        
-        
+       
+    
     }
     
 
@@ -47,7 +50,7 @@ public class testReadPackFile
             cardList.add(cardToAdd);
         }
         
-        areEqual=true;
+        boolean areEqual=true;
         if (cardList.size()==testCardList.size()){
             for (int i =0; i< cardList.size(); i++){
                 if (cardList.get(i).getCardValue() != testCardList.get(i).getCardValue()){
@@ -75,3 +78,4 @@ public class testReadPackFile
     public void tearDown()
     {
     }
+}

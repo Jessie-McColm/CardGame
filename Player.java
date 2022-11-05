@@ -208,6 +208,18 @@ public class Player implements Runnable
     {
         return hand;
     }
+    
+    /**
+     * Method to add Card object to the Deck list (to bottom of deck)
+     *
+     * @param  cardName  Card object to add
+     * @return    none
+     */
+    public void addCard(Card cardName)
+    {
+      // check whether full of not done in Player
+      hand.add(0, cardName);
+    }
 
 
     /**

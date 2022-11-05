@@ -3,6 +3,7 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.AfterClass;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -28,7 +29,7 @@ public class testPackFileValidity
      *
      * Called before every test case method.
      */
-    @Before
+    @BeforeEach
     public void setUp() throws Exception
     {
         Pack testPack= new Pack();
@@ -152,7 +153,7 @@ public class testPackFileValidity
         checkFileValidity.invoke(testPack);
         
 
-        assertFalse (testPack.getValidity());
+        assertTrue (testPack.getValidity());
     }
     
     @Test

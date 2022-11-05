@@ -5,6 +5,7 @@
  * @version (a version number or a date)
  */
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class CardGame {
 
@@ -42,11 +43,13 @@ public class CardGame {
    * @param  None
    * @return  cardList list of cards in the game
    */
-  public ArrayList<Card> setUpCards(){
+  public static ArrayList<Card> setUpCards(){
 
     Scanner readInput = new Scanner(System.in);
     boolean invalidInput = true;
-    int nOfPlayers;
+    //has to be set to 0 as java doesn't like lack of instantiation - will always be changed if 
+    //we break out of the first while loop
+    int nOfPlayers = 0;
 
     // Enter the number of players
     while (invalidInput){
@@ -62,8 +65,8 @@ public class CardGame {
 
     // Enter the pack file name
     while (invalidInput){
-      System.out.println("Please enter location of pack to load:")
-      String filename = readInput.nextline();
+      System.out.println("Please enter location of pack to load:");
+      String filename = readInput.nextLine();
       cardPack.readPackFile(filename, nOfPlayers);
 
       invalidInput = !(cardPack.getValidity());
@@ -76,13 +79,13 @@ public class CardGame {
 
   }
 
-  public void dealCards(ArrayList<Card> cardsInGame, Deck[] decksInGame,
+  public static void dealCards(ArrayList<Card> cardsInGame, Deck[] decksInGame,
   Player[] playersInGame){
 
     int cardCounter = 0;
 
     for (int i=0; i<4 ; i++){
-      for (Player eachPlayer : playerInGame){
+      for (Player eachPlayer : playersInGame){
         eachPlayer.addCard(cardsInGame.get(cardCounter));
         cardCounter++;
       }
@@ -90,7 +93,7 @@ public class CardGame {
 
     for (int i=0; i<4 ; i++){
       for (Deck eachDeck : decksInGame){
-        eachDeck.addCard(decksInGame.get(cardCounter));
+        eachDeck.addCard(cardsInGame.get(cardCounter));
         cardCounter++;
       }
     }

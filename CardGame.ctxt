@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=CardGame
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=java.util.ArrayList\ setUpCards()
+comment2.text=\r\n\ Method\ to\ take\ in\ user\ input\ of\ number\ of\ players\ and\ deck\ file\r\n\r\n\ @param\ \ None\r\n\ @return\ \ cardList\ list\ of\ cards\ in\ the\ game\r\n
+comment3.params=cardsInGame\ decksInGame\ playersInGame
+comment3.target=void\ dealCards(java.util.ArrayList,\ Deck[],\ Player[])
+numComments=4
