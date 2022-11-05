@@ -105,7 +105,7 @@ public class Pack
 
         this.valid=isValid;
     }
-    
+
     public boolean getValidity(){
         return this.valid;
     }

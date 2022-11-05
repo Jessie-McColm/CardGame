@@ -29,6 +29,18 @@ public class Player implements Runnable
         dropDeck = dropper;
         pickDeck = picker;
         playerFile = String.format("player%d_output.txt", playerID);
+
+        // find better way of creating file if doesnt exist and
+        // overridng one that does
+        // also shouldnt be in try except
+        try{
+        FileWriter fileToWrite = new FileWriter(playerFile);
+        BufferedWriter output = new BufferedWriter(fileToWrite);
+        output.write("");
+        output.close();
+      } catch(Exception e){}
+
+
     }
 
     public int getPlayerID(){
@@ -44,7 +56,8 @@ public class Player implements Runnable
     private void writeToPlayerFile(String stringToWrite){
 
       try {
-        FileWriter fileToWrite = new FileWriter(playerFile);
+        // true in FileWritter sets to append mode
+        FileWriter fileToWrite = new FileWriter(playerFile, true);
         BufferedWriter output = new BufferedWriter(fileToWrite);
         output.write(stringToWrite);
         output.close();
@@ -54,7 +67,7 @@ public class Player implements Runnable
       }
 
     }
-    
+
     /**
      * Method to add Card object to the Deck list (to bottom of deck)
      *
@@ -66,7 +79,7 @@ public class Player implements Runnable
       // check whether full of not done in Player
       hand.add(0, cardName);
     }
-    
+
     /**
      * Checks if all cards in player hand have the same value
      * Player wins the game if they do
@@ -93,7 +106,7 @@ public class Player implements Runnable
         hasWon = false;
       }
       return hasWon;
-    
+
       // stop all theads immediately after player wins
       // call event to end threads etc and output to files
       // should store the winner or winner ID
@@ -166,6 +179,10 @@ public class Player implements Runnable
       if (pickDeck.isDeckFull()){
 
         Card pickedCard = pickDeck.removeCard();
+        //System.out.println(pickedCard);
+        //System.out.println(pickDeck.getCardList());
+        try{wait(100);}catch(Exception e){}
+
 
         // this.checkVictory();  here??
         // or could just say if got 4 of same then drop one not the same
@@ -221,8 +238,8 @@ public class Player implements Runnable
     {
         return hand;
     }
-    
-    
+
+
 
 
     /**

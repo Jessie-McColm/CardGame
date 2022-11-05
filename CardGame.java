@@ -31,6 +31,13 @@ public class CardGame {
 
     dealCards(cardList, gameDecks, gamePlayers);
 
+    for (Player eachPlayer : gamePlayers){
+      Thread playerThread = new Thread (eachPlayer);
+      playerThread.start();
+    }
+
+
+
     // Create the decks and players :)
     // Deal out the cards to the decks and players :)
     // start the threads yay
@@ -47,7 +54,7 @@ public class CardGame {
 
     Scanner readInput = new Scanner(System.in);
     boolean invalidInput = true;
-    //has to be set to 0 as java doesn't like lack of instantiation - will always be changed if 
+    //has to be set to 0 as java doesn't like lack of instantiation - will always be changed if
     //we break out of the first while loop
     int nOfPlayers = 0;
 
@@ -56,6 +63,7 @@ public class CardGame {
       System.out.println("Please enter the number of players:");
       if (readInput.hasNextInt()){
         nOfPlayers = readInput.nextInt();
+        readInput.nextLine(); // as only reads int. Needs to clear over rest of line
         if (nOfPlayers > 0){invalidInput = false;}
       }
     }
@@ -68,8 +76,8 @@ public class CardGame {
       System.out.println("Please enter location of pack to load:");
       String filename = readInput.nextLine();
       cardPack.readPackFile(filename, nOfPlayers);
-
       invalidInput = !(cardPack.getValidity());
+
     }
 
     ArrayList<Card> cardList = new ArrayList<Card>();
