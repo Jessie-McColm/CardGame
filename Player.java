@@ -18,6 +18,8 @@ public class Player implements Runnable
     private Deck dropDeck;
     private Deck pickDeck;
     private String playerFile;
+    private Boolean hasWon;
+    private Boolean alive;
 
     /**
      * Constructor for objects of class Player
@@ -28,6 +30,8 @@ public class Player implements Runnable
         playerID = playID;
         dropDeck = dropper;
         pickDeck = picker;
+        alive = true;
+        hasWon = false;
         playerFile = String.format("player%d_output.txt", playerID);
 
         // find better way of creating file if doesnt exist and
@@ -41,6 +45,10 @@ public class Player implements Runnable
       } catch(Exception e){}
 
 
+    }
+
+    public void kill(){
+      alive = false;
     }
 
     public int getPlayerID(){
@@ -90,7 +98,7 @@ public class Player implements Runnable
      */
     public boolean checkVictory(){
 
-      boolean hasWon = true;
+      boolean winner = true;
       int firstCard;
 
       if (hand.size() == 4){
@@ -98,18 +106,40 @@ public class Player implements Runnable
 
         for (Card eachCard : hand){
           if (eachCard.getCardValue() != firstCard){
-            hasWon = false;
+            winner = false;
             break;
           }
         }
       } else {
-        hasWon = false;
+        winner = false;
       }
+
+      hasWon = winner;
+      if (hasWon){
+        System.out.println(playerID);
+        try{
+          wait();
+        } catch (Exception e){}
+
+      }
+
+
       return hasWon;
 
       // stop all theads immediately after player wins
       // call event to end threads etc and output to files
       // should store the winner or winner ID
+    }
+
+    /**
+     *
+     *
+     * @param
+     * @return
+     */
+    public Boolean getHasWon(){
+      return this.hasWon;
+
     }
 
     /**
@@ -196,9 +226,16 @@ public class Player implements Runnable
           }
         }
 
-        Random random = new Random();
-        int randNum = random.nextInt(possibleDrops.size()-1);
-        Card cardToDrop = possibleDrops.get(randNum);
+        int dropNum;
+        if (possibleDrops.size() > 1){
+          Random random = new Random();
+          int randNum = random.nextInt(possibleDrops.size()-1);
+          dropNum = randNum;
+        } else {
+          dropNum = 0;
+        }
+        Card cardToDrop = possibleDrops.get(dropNum);
+
 
         hand.remove(cardToDrop);
         dropDeck.addCard(cardToDrop);
@@ -220,6 +257,7 @@ public class Player implements Runnable
         textFileString += String.join(" ", handContent) + "\n";
 
         writeToPlayerFile(textFileString);
+        checkVictory();
 
      }
 
@@ -249,11 +287,13 @@ public class Player implements Runnable
      * @return    the sum of x and y
      */
     public void run(){
-      checkVictory();
 
-      while (true){
+      while (alive){
         // checkVictory() - do we tdo this here or in pickAndDrop?
         if (hand.size() == 4){
+          if (checkVictory()){
+            break;
+          }
           this.pickAndDrop();
         }
       }

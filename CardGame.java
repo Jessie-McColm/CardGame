@@ -14,9 +14,11 @@ public class CardGame {
     // takes user inputs
     ArrayList<Card> cardList = setUpCards();
     int numOfPlayers = cardList.size()/8;
+    Player winner;
 
     Deck[] gameDecks = new Deck[numOfPlayers];
     Player[] gamePlayers = new Player[numOfPlayers];
+    Thread[] gameThreads = new Thread[numOfPlayers];
 
     // loop through to make the decks
     for (int i=0; i< numOfPlayers; i++){
@@ -31,12 +33,33 @@ public class CardGame {
 
     dealCards(cardList, gameDecks, gamePlayers);
 
-    for (Player eachPlayer : gamePlayers){
-      Thread playerThread = new Thread (eachPlayer);
+    for (int i=0; i< numOfPlayers; i++){
+      Thread playerThread = new Thread (gamePlayers[i]);
+      gameThreads[i] = playerThread;
       playerThread.start();
     }
 
+    boolean loop = true;
+    while (loop){
+      for (int i=0; i< numOfPlayers; i++){
+        if (gamePlayers[i].getHasWon()){
+           System.out.println("winner");
+           winner = gamePlayers[i];
+           loop = false;
+          for (int j=0; j< numOfPlayers; j++){
+            gamePlayers[j].kill();
+            try{
+              gameThreads[j].wait();
+            } catch (Exception e){} //chnage
+          }
+          break;
+        }
+      }
+    }
 
+    for (Player eachPlayer : gamePlayers){
+      eachPlayer.win();
+    }
 
     // Create the decks and players :)
     // Deal out the cards to the decks and players :)
@@ -64,7 +87,15 @@ public class CardGame {
       if (readInput.hasNextInt()){
         nOfPlayers = readInput.nextInt();
         readInput.nextLine(); // as only reads int. Needs to clear over rest of line
-        if (nOfPlayers > 0){invalidInput = false;}
+        if (nOfPlayers > 0){
+          invalidInput = false;
+        } else {
+          System.out.println("Invalid integer input - must be integer above 0");
+        }
+      } else {
+        System.out.println("Invalid string input - must be an integer");
+        readInput.nextLine();
+        // clears line from scanner as otherwise keeps reading the same line
       }
     }
 
