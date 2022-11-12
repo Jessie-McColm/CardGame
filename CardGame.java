@@ -14,6 +14,12 @@ public class CardGame {
 
     // takes user inputs
     ArrayList<Card> cardList = setUpCards();
+    runGame(cardList);
+  
+  }
+
+  public static void runGame(ArrayList<Card> cardList){
+
     int numOfPlayers = cardList.size()/8;
     Player winner = null;
     ArrayList<Player> losers;
@@ -76,9 +82,6 @@ public class CardGame {
     for (Deck eachDeck: gameDecks){
       eachDeck.endGame();
     }
-
-
-
 
 
 

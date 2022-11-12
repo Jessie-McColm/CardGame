@@ -147,8 +147,8 @@ public class Player implements Runnable
      */
     public void win(){
 
-      String winMessage = String.format("player %d wins \n", playerID);
-      System.out.print(winMessage);
+      String winMessage = String.format("player %d wins", playerID);
+      System.out.print(winMessage + "\n");
       endGame(winMessage);
 
     }
