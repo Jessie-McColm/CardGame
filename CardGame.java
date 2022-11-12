@@ -6,6 +6,7 @@
  */
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CardGame {
 
@@ -14,11 +15,13 @@ public class CardGame {
     // takes user inputs
     ArrayList<Card> cardList = setUpCards();
     int numOfPlayers = cardList.size()/8;
-    Player winner;
+    Player winner = null;
+    ArrayList<Player> losers;
 
     Deck[] gameDecks = new Deck[numOfPlayers];
     Player[] gamePlayers = new Player[numOfPlayers];
     Thread[] gameThreads = new Thread[numOfPlayers];
+
 
     // loop through to make the decks
     for (int i=0; i< numOfPlayers; i++){
@@ -39,31 +42,46 @@ public class CardGame {
       playerThread.start();
     }
 
+    // if thread wins it stops itself by setting alive to false
+    // tis checks if soemhting has won and if it has then it kills the others
     boolean loop = true;
     while (loop){
       for (int i=0; i< numOfPlayers; i++){
         if (gamePlayers[i].getHasWon()){
-           System.out.println("winner");
            winner = gamePlayers[i];
            loop = false;
-          for (int j=0; j< numOfPlayers; j++){
-            gamePlayers[j].kill();
-            try{
-              gameThreads[j].wait();
-            } catch (Exception e){} //chnage
-          }
-          break;
+           break;
         }
       }
     }
 
-    for (Player eachPlayer : gamePlayers){
-      eachPlayer.win();
+    for (int j=0; j< numOfPlayers; j++){
+      gamePlayers[j].kill();
     }
 
-    // Create the decks and players :)
-    // Deal out the cards to the decks and players :)
-    // start the threads yay
+    // go through list with winner removed so we can call loss
+    losers = new ArrayList<>(Arrays.asList(gamePlayers));
+    losers.remove(winner);
+
+    int winnerID = winner.getPlayerID();
+
+    for (Player eachPlayer : losers){
+      eachPlayer.loss(winnerID);
+    }
+
+    // call win on the winner
+    winner.win();
+
+    // go through decks and call their endgame method
+    for (Deck eachDeck: gameDecks){
+      eachDeck.endGame();
+    }
+
+
+
+
+
+
 
   }
 

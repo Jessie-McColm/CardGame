@@ -19,7 +19,7 @@ public class Player implements Runnable
     private Deck pickDeck;
     private String playerFile;
     private Boolean hasWon;
-    private Boolean alive;
+    private volatile Boolean alive;
 
     /**
      * Constructor for objects of class Player
@@ -116,15 +116,11 @@ public class Player implements Runnable
 
       hasWon = winner;
       if (hasWon){
-        System.out.println(playerID);
-        try{
-          wait();
-        } catch (Exception e){}
-
+        this.alive = false;
       }
 
-
       return hasWon;
+
 
       // stop all theads immediately after player wins
       // call event to end threads etc and output to files
@@ -151,7 +147,7 @@ public class Player implements Runnable
      */
     public void win(){
 
-      String winMessage = String.format("player %d wins", playerID);
+      String winMessage = String.format("player %d wins \n", playerID);
       System.out.print(winMessage);
       endGame(winMessage);
 
@@ -206,17 +202,13 @@ public class Player implements Runnable
 
       String textFileString;
 
-      if (pickDeck.isDeckFull()){
+      if (pickDeck.isDeckFull() && !dropDeck.isTooBig()){
 
         Card pickedCard = pickDeck.removeCard();
-        //System.out.println(pickedCard);
-        //System.out.println(pickDeck.getCardList());
-        try{wait(100);}catch(Exception e){}
 
-
-        // this.checkVictory();  here??
-        // or could just say if got 4 of same then drop one not the same
-
+        if (pickedCard == null){
+          System.out.println("The card is null fuckers");
+        }
 
         ArrayList<Card> possibleDrops = new ArrayList<Card>();
 
@@ -257,12 +249,9 @@ public class Player implements Runnable
         textFileString += String.join(" ", handContent) + "\n";
 
         writeToPlayerFile(textFileString);
-        checkVictory();
+
 
      }
-
-
-
     }
 
 
@@ -278,8 +267,6 @@ public class Player implements Runnable
     }
 
 
-
-
     /**
      * An example of a method - replace this comment with your own
      *
@@ -288,8 +275,8 @@ public class Player implements Runnable
      */
     public void run(){
 
+
       while (alive){
-        // checkVictory() - do we tdo this here or in pickAndDrop?
         if (hand.size() == 4){
           if (checkVictory()){
             break;

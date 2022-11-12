@@ -33,9 +33,9 @@ public class Deck {
     public int getDeckID(){
       return deckID;
     }
-    
+
     /**
-     * 
+     *
      *
      * @param  none  Card object to add
      * @return    none
@@ -63,17 +63,30 @@ public class Deck {
      * @param  None
      * @return cardToReturn Card object removed from deck
      */
-    public Card removeCard()
+    public synchronized Card removeCard()
     {
         Card cardToReturn= null;
-        // how are we handling if list is empty as get index error
-        try{
-          cardToReturn = cardList.remove(cardList.size()-1);
 
-        } catch (Exception e){
-          e.printStackTrace();
+        if (cardList.size() != 0){
+
+          while (cardToReturn == null){
+           cardToReturn = cardList.get(cardList.size()-1);
+           cardList.remove(cardList.size()-1);
+          }
         }
+
+
         return cardToReturn;
+    }
+
+    public Boolean isTooBig(){
+      boolean isTooBig = false;
+
+      if (cardList.size() > 4){
+        isTooBig = true;
+      }
+
+      return isTooBig;
     }
 
     /**
@@ -133,8 +146,11 @@ public class Deck {
 
       boolean isFull;
 
-      if (cardList.size() >= 4){isFull = true;
-      } else { isFull = false;}
+      if (cardList.size() >= 4){
+        isFull = true;
+      } else {
+        isFull = false;
+      }
        return isFull;
     }
 
