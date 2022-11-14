@@ -1,1 +1,1 @@
-deck 2 contents: 48 10 8 8 9
+deck 2 contents: 27 10 6

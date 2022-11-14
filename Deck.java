@@ -51,10 +51,10 @@ public class Deck {
      * @param  cardName  Card object to add
      * @return    none
      */
-    public void addCard(Card cardName)
+    public synchronized void addCard(Card cardName)
     {
       // check whether full of not done in Player
-      cardList.add(0, cardName);
+      cardList.add(cardName);
     }
 
     /**
@@ -69,11 +69,11 @@ public class Deck {
 
         if (cardList.size() != 0){
 
-          while (cardToReturn == null){
-           cardToReturn = cardList.get(cardList.size()-1);
-           cardList.remove(cardList.size()-1);
+          //while (cardToReturn == null){
+           //cardToReturn = cardList.get(cardList.size()-1);
+           cardToReturn=cardList.remove(0);
           }
-        }
+
 
 
         return cardToReturn;
