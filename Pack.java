@@ -4,16 +4,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
+
 /**
  * Object to handle pack of all cards in the game
  * Methods to read in a pack file, check file is valid and make card
  * instances
  *
+ * Methods: getValidity, getCardList, readPackFile, checkFileValidity
+ *
  * @Jessie McColm and Lucia Adams
  * @version (a version number or a date)
  */
-public class Pack
-{
+public class Pack{
+
     private ArrayList<Card> cardList = new ArrayList<Card>();
     private String fileName;
     private int nPlayers;
@@ -21,21 +24,45 @@ public class Pack
 
     /**
      * Constructor for objects of class Pack
+     * Pack is invalid by default
+     *
      */
     public Pack(){this.valid=false;}
 
+
     /**
-     * Reads file (fileName) if it is valid and creates insatnces of
+     * Getter method for cardList
+     * Cardlist is an ArrayList of Card objects in the pack
+     *
+     * @param  None
+     * @return cardList
+     */
+    public boolean getValidity(){
+        return this.valid;
+    }
+
+    /**
+     * Method is getter for cardList
+     *
+     * @param  None
+     * @return   cardList ArrayList of Card objects in the pack
+     */
+    public ArrayList<Card> getCardList(){
+        return cardList;
+    }
+
+    /**
+     * Reads file (fileName), if it is valid then creates instances of
      * cards and adds to cardList
      *
      * @param  fileName  name of pack file to be read
      * @param  nplayers number of players
-     * @return   None
+     * @return  None
      */
-    public void readPackFile(String fileName, int nPlayers)
-    {
+    public void readPackFile(String fileName, int nPlayers){
         this.fileName=fileName;
         this.nPlayers=nPlayers;
+
         checkFileValidity();
         if (valid){
           try{
@@ -46,12 +73,14 @@ public class Pack
             String line;
             int cardValue;
             Card newCard;
+
             while((line = br.readLine()) != null){
               cardValue = Integer.parseInt(line);
               newCard = new Card(cardValue);
               cardList.add(newCard);
             }
             br.close();
+
           } catch (IOException e){
             e.printStackTrace();
           }
@@ -68,8 +97,6 @@ public class Pack
      * @param fileName name of file to check validity of
      * @param nplayers number of players to check the file is valid for
      * @return valid  boolean of whether pack is valid or not
-     *
-     * if learn reflection- make private
      */
     private void checkFileValidity(){
         boolean isValid = true;
@@ -95,7 +122,7 @@ public class Pack
           }
           br.close();
         } catch (IOException e){
-          // issue reading file
+          // if there is an issue reading the file
           isValid = false;
         }
 
@@ -106,18 +133,4 @@ public class Pack
         this.valid=isValid;
     }
 
-    public boolean getValidity(){
-        return this.valid;
-    }
-
-    /**
-     * Method is getter for cardList
-     *
-     * @param  None
-     * @return   cardList ArrayList of Card objects in the pack
-     */
-    public ArrayList<Card> getCardList()
-    {
-        return cardList;
-    }
 }

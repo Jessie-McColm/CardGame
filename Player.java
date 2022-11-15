@@ -5,14 +5,16 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 /**
- * Write a description of class Player here.
+ * Runnable object acting as a player within the game.
  *
- * @author (your name)
+ * Methods: getPlayerID, getHand, getHasWon, writeToPlayerFile, addCard,
+ * checkVictory, win, loss, kill, endGame, pickAndDrop, run
+ *
+ * @Jessie McColm and Lucia Adams
  * @version (a version number or a date)
  */
-public class Player implements Runnable
-{
-    // instance variables - replace the example below with your own]
+public class Player implements Runnable{
+
     private int playerID;
     private ArrayList<Card> hand= new ArrayList<Card>();
     private Deck dropDeck;
@@ -24,9 +26,8 @@ public class Player implements Runnable
     /**
      * Constructor for objects of class Player
      */
-    public Player(int playID, Deck dropper, Deck picker)
-    {
-        // initialise instance variables
+    public Player(int playID, Deck dropper, Deck picker){
+
         playerID = playID;
         dropDeck = dropper;
         pickDeck = picker;
@@ -38,25 +39,49 @@ public class Player implements Runnable
         // overridng one that does
         // also shouldnt be in try except
         try{
-        FileWriter fileToWrite = new FileWriter(playerFile);
-        BufferedWriter output = new BufferedWriter(fileToWrite);
-        output.write("");
-        output.close();
-      } catch(Exception e){}
-
-
+          FileWriter fileToWrite = new FileWriter(playerFile);
+          BufferedWriter output = new BufferedWriter(fileToWrite);
+          output.write("");
+          output.close();
+        } catch(Exception e){}
     }
 
-    public void kill(){
-      alive = false;
-    }
-
+    /**
+     * Getter method for playerID
+     *
+     * @param  None
+     * @return int playerID
+     */
     public int getPlayerID(){
       return playerID;
     }
 
     /**
+     * Getter method for the players hand (an ArrayList of Cards)
+     *
+     * @param None
+     * @return hand
+     */
+    public ArrayList<Card> getHand()
+    {
+        return hand;
+    }
+
+    /**
+     * Getter method for hasWon
+     * hasWon used to track if Player has had a winning hand
+     *
+     * @param None
+     * @return None
+     */
+    public Boolean getHasWon(){
+      return this.hasWon;
+
+    }
+
+    /**
      * Writes stringToWrite to player output file
+     * stringToWrite is the desired string
      *
      * @param  stringToWrite string to write to file
      * @return  None
@@ -80,7 +105,7 @@ public class Player implements Runnable
      * Method to add Card object to the Deck list (to bottom of deck)
      *
      * @param  cardName  Card object to add
-     * @return    none
+     * @return None
      */
     public void addCard(Card cardName)
     {
@@ -90,11 +115,11 @@ public class Player implements Runnable
 
     /**
      * Checks if all cards in player hand have the same value
-     * Player wins the game if they do
-     * Triggers game to end??
+     * Returns whether they have won or not and also sets the status
+     * alive of the player to this boolean.
      *
      * @param  None
-     * @return  None
+     * @return  Boolean hasWon
      */
     public boolean checkVictory(){
 
@@ -120,23 +145,8 @@ public class Player implements Runnable
       }
 
       return hasWon;
-
-
-      // stop all theads immediately after player wins
-      // call event to end threads etc and output to files
-      // should store the winner or winner ID
     }
 
-    /**
-     *
-     *
-     * @param
-     * @return
-     */
-    public Boolean getHasWon(){
-      return this.hasWon;
-
-    }
 
     /**
      * Output to screen the player has won and write this to player file
@@ -170,10 +180,21 @@ public class Player implements Runnable
     }
 
     /**
+     * Setter to set the alive attribute of Player to false
+     * Used to kill the thread via polling
+     *
+     * @param  None
+     * @return  None
+     */
+    public void kill(){
+      alive = false;
+    }
+
+    /**
      * Write to player file that they have exited and write their hand
      *
      * @param  endMessage  message deatilign a win or loss
-     * @return    the sum of x and y
+     * @return  None
      */
     private void endGame(String endMessage){
 
@@ -193,10 +214,13 @@ public class Player implements Runnable
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Method to pick up a card from the corresponding pick deck
+     * and drop a card to the drop deck
+     * The Player favours cards with the same value as its ID,
+     * otherwsie drops any random card
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  None
+     * @return  None
      */
     private synchronized void pickAndDrop(){
 
@@ -228,7 +252,6 @@ public class Player implements Runnable
         }
         Card cardToDrop = possibleDrops.get(dropNum);
 
-
         hand.remove(cardToDrop);
         dropDeck.addCard(cardToDrop);
 
@@ -250,31 +273,19 @@ public class Player implements Runnable
 
         writeToPlayerFile(textFileString);
 
-
      }
     }
 
-
     /**
-     * An example of a method - replace this comment with your own
+     * Method to make the player pick up and drop cards while the
+     * player attribute alive is true.
+     * Checks for victory throughout which will exit the loop on
+     * finding a winning hand
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public ArrayList<Card> getHand()
-    {
-        return hand;
-    }
-
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @param  None
+     * @return  None
      */
     public void run(){
-
 
       while (alive){
         if (hand.size() == 4){

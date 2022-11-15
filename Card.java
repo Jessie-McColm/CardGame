@@ -1,6 +1,7 @@
-
 /**
  * Object acting as a card in the game, storing a value of its face
+ *
+ * Methods: getCardValue, toString
  *
  * @Jessie McColm and Lucia Adams
  * @version (a version number or a date)
@@ -11,9 +12,9 @@ public class Card {
 
     /**
      * Constructor for objects of class Card
+     *
      */
-    public Card(int value)
-    {
+    public Card(int value){
         cardValue = value;
     }
 
@@ -21,10 +22,9 @@ public class Card {
      * Getter for the value of the card
      *
      * @param  None
-     * @return  int cardValue   the value of the card
+     * @return  int cardValue
      */
-    public int getCardValue()
-    {
+    public int getCardValue(){
         return cardValue;
     }
 
@@ -32,7 +32,7 @@ public class Card {
      * To String method that returns String of value on card
      *
      * @param  None
-     * @return  String cardValue  the value of the card
+     * @return  String cardValue
      */
     @Override
     public String toString(){
