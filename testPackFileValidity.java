@@ -32,11 +32,7 @@ public class testPackFileValidity
     @BeforeEach
     public void setUp() throws Exception
     {
-        Pack testPack= new Pack();
-        Class packClass = testPack.getClass();
-        
-        Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
-        checkFileValidity.setAccessible(true);
+       
         
     }
     

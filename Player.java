@@ -230,10 +230,7 @@ public class Player implements Runnable{
 
         Card pickedCard = pickDeck.removeCard();
 
-        if (pickedCard == null){
-          System.out.println("The card is null fuckers");
-        }
-
+        
         ArrayList<Card> possibleDrops = new ArrayList<Card>();
 
         for (Card eachCard : hand){
