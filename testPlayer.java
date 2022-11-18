@@ -55,14 +55,7 @@ public class testPlayer
         assertFalse(testPlayer.getPlayerID()==2);
     }
     
-    @Test
-    public void testWriteToPlayerFile() {
-        Deck testDeck1 = new Deck(1);
-        Deck testDeck2 = new Deck(2);
-        Player testPlayer = new Player(1,testDeck1, testDeck2);
-        
-        
-    }
+    
     
     @Test 
     public void testAddCard(){
@@ -85,15 +78,7 @@ public class testPlayer
         assertNotEquals(testPlayer.getHand().get(0),testCard2);
     }
     
-    @Test 
-    public void testGetCard(){
-        Deck testDeck1 = new Deck(1);
-        Deck testDeck2 = new Deck(2);
-        Player testPlayer = new Player(1,testDeck1, testDeck2);
-        Card testCard=new Card(1);
-        testPlayer.addCard(new Card(1));
-        assertNotEquals(testPlayer.getHand().get(0),testCard);
-    }
+   
     
     
     
@@ -139,17 +124,17 @@ public class testPlayer
         testPlayer.addCard(new Card(1));
         testPlayer.addCard(new Card(2));
         
-        testDeck1.addCard(new Card(4));
-        testDeck1.addCard(new Card(3));
-        testDeck1.addCard(new Card(2));
         testDeck1.addCard(new Card(1));
+        testDeck1.addCard(new Card(2));
+        testDeck1.addCard(new Card(3));
+        testDeck1.addCard(new Card(4));
         
         testDeck2.addCard(new Card(5));
         testDeck2.addCard(new Card(6));
         testDeck2.addCard(new Card(7));
         testDeck2.addCard(new Card(8));
         
-        //should pick up from deck 2 - should pick up the card of value 5
+        
         
         pickAndDrop.invoke(testPlayer);
         try{
@@ -161,10 +146,11 @@ public class testPlayer
             String line3=br.readLine();
             br.close();
 
-            boolean allLinesEqual=(line1.equals("player 1 draws a 1 from deck 1") && line2.equals("player 1 discards a 2 to deck 2") 
+            boolean allLinesEqual=(line1.equals("player 1 draws a 1 from deck 1") &&  line2.equals("player 1 discards a 2 to deck 2") 
             && line3.equals("player 1 current hand: 1 1 1 1"));
             assertTrue(allLinesEqual);
           } catch (IOException e){
+              //if an error occurs, the test should fail
             e.printStackTrace();
             assertTrue(false);
           }
@@ -175,7 +161,7 @@ public class testPlayer
     public void testPickAndDropWithRandomness() throws Exception{
         Deck testDeck1 = new Deck(1);
         Deck testDeck2 = new Deck(2);
-        Player testPlayer = new Player(1,testDeck1, testDeck2);
+        Player testPlayer = new Player(1,testDeck2, testDeck1);
         Class playerClass = testPlayer.getClass();
         Method pickAndDrop= playerClass.getDeclaredMethod("pickAndDrop");
         pickAndDrop.setAccessible(true);
@@ -185,17 +171,18 @@ public class testPlayer
         testPlayer.addCard(new Card(1));
         testPlayer.addCard(new Card(2));
         
-        testDeck1.addCard(new Card(1));
-        testDeck1.addCard(new Card(2));
-        testDeck1.addCard(new Card(3));
         testDeck1.addCard(new Card(4));
+        testDeck1.addCard(new Card(3));
+        testDeck1.addCard(new Card(2));
+        testDeck1.addCard(new Card(1));
+        
         
         testDeck2.addCard(new Card(5));
         testDeck2.addCard(new Card(6));
         testDeck2.addCard(new Card(7));
         testDeck2.addCard(new Card(8));
         
-        //should pick up from deck 2 - should pick up the card of value 5
+        
         
         pickAndDrop.invoke(testPlayer);
         try{
@@ -208,10 +195,56 @@ public class testPlayer
             br.close();
         
 
-            boolean allLinesEqual=(line1.equals("player 1 draws a 4 from deck 1") && (line2.equals("player 1 discards a 2 to deck 2") ||  
-            line2.equals("player 1 discards a 4 to deck 2") ) && line3.equals("player 1 current hand: 1 1 1 1"));
+            boolean allLinesEqual=(line1.equals("player 1 draws a 4 from deck 1") &&   (line2.equals("player 1 discards a 2 to deck 2") ||  
+            line2.equals("player 1 discards a 4 to deck 2") ) && (line3.equals("player 1 current hand: 1 1 1 4") || 
+            line3.equals("player 1 current hand: 1 1 1 2")));
+            
             assertTrue(allLinesEqual);
           } catch (IOException e){
+            e.printStackTrace();
+            //if an error occurs, the test should fail
+            assertTrue(false);
+          }
+        
+    }
+    
+    @Test
+    public void testPickAndDropWithRandomnessDoesNotDropMatchingCards() throws Exception{
+        Deck testDeck1 = new Deck(1);
+        Deck testDeck2 = new Deck(2);
+        Player testPlayer = new Player(1,testDeck2, testDeck1);
+        Class playerClass = testPlayer.getClass();
+        Method pickAndDrop= playerClass.getDeclaredMethod("pickAndDrop");
+        pickAndDrop.setAccessible(true);
+        
+        testPlayer.addCard(new Card(1));
+        testPlayer.addCard(new Card(1));
+        testPlayer.addCard(new Card(1));
+        testPlayer.addCard(new Card(2));
+        
+        testDeck1.addCard(new Card(4));
+        testDeck1.addCard(new Card(3));
+        testDeck1.addCard(new Card(2));
+        testDeck1.addCard(new Card(1));
+        
+        testDeck2.addCard(new Card(5));
+        testDeck2.addCard(new Card(6));
+        testDeck2.addCard(new Card(7));
+        testDeck2.addCard(new Card(8));
+        
+        
+        
+        pickAndDrop.invoke(testPlayer);
+        try{
+            File file = new File("player1_output.txt");
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            String line1=br.readLine();
+            String line2=br.readLine();
+            br.close();
+            assertFalse(line2.equals("player 1 discards a 1 to deck 2"));
+          } catch (IOException e){
+              //if an error occurs, the test should fail
             e.printStackTrace();
             assertTrue(false);
           }
@@ -222,6 +255,7 @@ public class testPlayer
     
     @Test
     public void testWin(){
+        //this method also tests that a player object writes to the expected files
         Deck testDeck1 = new Deck(1);
         Deck testDeck2 = new Deck(2);
         Player testPlayer = new Player(1,testDeck1, testDeck2);
@@ -243,6 +277,7 @@ public class testPlayer
             boolean allLinesEqual=(line1.equals("player 1 wins") && line2.equals("player 1 exits") && line3.equals("player 1 final hand: 2 1 1 1"));
             assertTrue(allLinesEqual);
           } catch (IOException e){
+              //if an error occurs, the test should fail
             e.printStackTrace();
             assertTrue(false);
           }
@@ -272,6 +307,7 @@ public class testPlayer
             boolean allLinesEqual=(line1.equals("player 3 has informed player 1 that player 3 has won") && line2.equals("player 1 exits") && line3.equals("player 1 final hand: 2 1 1 1"));
             assertTrue(allLinesEqual);
           } catch (IOException e){
+              //if an error occurs, the test should fail
             e.printStackTrace();
             assertTrue(false);
           }
@@ -283,9 +319,9 @@ public class testPlayer
         Deck testDeck2 = new Deck(2);
         Player testPlayer = new Player(1,testDeck1, testDeck2);
         Card testCard=new Card(1);
-        Card testCard2=new Card(1);
+        Card testCard2=new Card(2);
         Card testCard3=new Card(1);
-        Card testCard4=new Card(1);
+        Card testCard4=new Card(4);
         testPlayer.addCard(testCard);
         testPlayer.addCard(testCard2);
         testPlayer.addCard(testCard3);
@@ -299,6 +335,80 @@ public class testPlayer
         assertTrue(testTruth);
     }
     
+    @Test
+    public void testCheckVictoryWhenHas4MatchingsCards(){
+        Deck testDeck1 = new Deck(1);
+        Deck testDeck2 = new Deck(2);
+        Player testPlayer = new Player(1,testDeck1, testDeck2);
+        Card testCard=new Card(1);
+        Card testCard2=new Card(1);
+        Card testCard3=new Card(1);
+        Card testCard4=new Card(1);
+        testPlayer.addCard(testCard);
+        testPlayer.addCard(testCard2);
+        testPlayer.addCard(testCard3);
+        testPlayer.addCard(testCard4);
+        assertTrue(testPlayer.checkVictory());
+    }
+    
+    @Test
+    public void testCheckVictoryWhenHasNot4MatchingsCards(){
+        Deck testDeck1 = new Deck(1);
+        Deck testDeck2 = new Deck(2);
+        Player testPlayer = new Player(1,testDeck1, testDeck2);
+        Card testCard=new Card(1);
+        Card testCard2=new Card(2);
+        Card testCard3=new Card(1);
+        Card testCard4=new Card(1);
+        testPlayer.addCard(testCard);
+        testPlayer.addCard(testCard2);
+        testPlayer.addCard(testCard3);
+        testPlayer.addCard(testCard4);
+        assertFalse(testPlayer.checkVictory());
+    }
+    
+    @Test
+    public void testCheckVictoryWhenHasTooFewCards(){
+        Deck testDeck1 = new Deck(1);
+        Deck testDeck2 = new Deck(2);
+        Player testPlayer = new Player(1,testDeck1, testDeck2);
+        Card testCard=new Card(1);
+        Card testCard2=new Card(1);
+        Card testCard3=new Card(1);
+        testPlayer.addCard(testCard);
+        testPlayer.addCard(testCard2);
+        testPlayer.addCard(testCard3);
+        assertFalse(testPlayer.checkVictory());
+    }
+    
+    @Test
+    public void testCheckVictoryWhenHasTooManyCards(){
+        Deck testDeck1 = new Deck(1);
+        Deck testDeck2 = new Deck(2);
+        Player testPlayer = new Player(1,testDeck1, testDeck2);
+        Card testCard=new Card(1);
+        Card testCard2=new Card(1);
+        Card testCard3=new Card(1);
+        Card testCard4=new Card(1);
+        Card testCard5=new Card(1);
+        testPlayer.addCard(testCard);
+        testPlayer.addCard(testCard2);
+        testPlayer.addCard(testCard3);
+        testPlayer.addCard(testCard4);
+        testPlayer.addCard(testCard5);
+        assertFalse(testPlayer.checkVictory());
+    }
+    
+    @Test
+    public void testKill(){
+        Deck testDeck1 = new Deck(1);
+        Deck testDeck2 = new Deck(2);
+        Player testPlayer = new Player(1,testDeck1, testDeck2);
+        testPlayer.kill();
+        testPlayer.run();
+        //tests if run stops executing
+        assertTrue(true);
+    }
     
     
     /**
