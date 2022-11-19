@@ -34,14 +34,14 @@ public class testDeck
     }
     
     @Test
-    public void testGetDeckID() throws Exception{
+    public void testGetDeckID(){
         Deck testDeck = new Deck(1);
         assertEquals(1,testDeck.getDeckID());
         
     }
     
     @Test
-    public void testAddCard() throws Exception{
+    public void testAddCard(){
         Deck testDeck = new Deck(1);
         Card testCard = new Card(1);
         testDeck.addCard(testCard);
@@ -50,7 +50,7 @@ public class testDeck
     }
     
     @Test
-    public void testRemoveCard() throws Exception{
+    public void testRemoveCard() {
         Deck testDeck = new Deck(1);
         Card testCard = new Card(1);
         testDeck.addCard(testCard);
@@ -59,7 +59,7 @@ public class testDeck
     }
     
     @Test
-    public void testRemoveCardOrdering() throws Exception{
+    public void testRemoveCardOrdering(){
         Deck testDeck = new Deck(1);
         Card testCard = new Card(1);
         Card testCard2 = new Card(2);
@@ -70,6 +70,32 @@ public class testDeck
         assertEquals(testCard, testDeck.removeCard());
         
     }
+    
+    @Test
+    public void testGetCardListOrdering(){
+        Deck testDeck = new Deck(1);
+        Card testCard = new Card(1);
+        Card testCard2 = new Card(2);
+        Card testCard3 = new Card(1);
+        testDeck.addCard(testCard);
+        testDeck.addCard(testCard2);
+        testDeck.addCard(testCard3);
+        assertTrue(testDeck.getCardList().get(0)==testCard && 
+        testDeck.getCardList().get(1)==testCard2 && testDeck.getCardList().get(2)==testCard3);
+    }
+    
+    @Test
+    public void testGetCardListOrderingIsNot(){
+        Deck testDeck = new Deck(1);
+        Card testCard = new Card(1);
+        Card testCard2 = new Card(2);
+        Card testCard3 = new Card(1);
+        testDeck.addCard(testCard);
+        testDeck.addCard(testCard2);
+        testDeck.addCard(testCard3);
+        assertFalse(testDeck.getCardList().get(2)==testCard);
+    }
+    
     
     @Test
     public void testEndGame() throws Exception{
@@ -98,8 +124,9 @@ public class testDeck
         
     }
     
+    
     @Test
-    public void testIsNonEmptyDeckEmpty() throws Exception{
+    public void testIsNonEmptyDeckEmpty() {
         Deck testDeck = new Deck(1);
         Card testCard = new Card(1);
         testDeck.addCard(testCard);
@@ -108,7 +135,7 @@ public class testDeck
     }
     
     @Test
-    public void testIsEmptyDeckEmpty() throws Exception{
+    public void testIsEmptyDeckEmpty() {
         Deck testDeck = new Deck(1);
         assertTrue(testDeck.isDeckEmpty());
         
@@ -135,6 +162,38 @@ public class testDeck
         Card testCard4 = new Card(1);
         testDeck.addCard(testCard4);
         assertTrue(testDeck.isDeckFull());
+        
+    }
+    
+    @Test
+    public void testBigDeckIsTooBig() throws Exception{
+        Deck testDeck = new Deck(1);
+        Card testCard = new Card(1);
+        testDeck.addCard(testCard);
+        Card testCard2 = new Card(1);
+        testDeck.addCard(testCard2);
+        Card testCard3 = new Card(1);
+        testDeck.addCard(testCard3);
+        Card testCard4 = new Card(1);
+        testDeck.addCard(testCard4);
+        Card testCard5 = new Card(2);
+        testDeck.addCard(testCard5);
+        assertTrue(testDeck.isTooBig());
+        
+    }
+    
+    @Test
+    public void testSmallDeckIsTooBig() throws Exception{
+        Deck testDeck = new Deck(1);
+        Card testCard = new Card(1);
+        testDeck.addCard(testCard);
+        Card testCard2 = new Card(1);
+        testDeck.addCard(testCard2);
+        Card testCard3 = new Card(1);
+        testDeck.addCard(testCard3);
+        Card testCard4 = new Card(1);
+        testDeck.addCard(testCard4);
+        assertFalse(testDeck.isTooBig());
         
     }
     

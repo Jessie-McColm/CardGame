@@ -37,9 +37,21 @@ public class TestCard
     }
     
     @Test 
+    public void testGetCardValueIsNot() {
+        Card testCard=new Card(1);
+        assertFalse(testCard.getCardValue()==-1);
+    }
+    
+    @Test 
     public void testCardToString() {
         Card testCard=new Card(1);
         assertTrue(testCard.toString().equals("1"));
+    }
+    
+    @Test 
+    public void testCardToStringIsNot() {
+        Card testCard=new Card(1);
+        assertFalse(testCard.toString().equals("5"));
     }
 
     /**

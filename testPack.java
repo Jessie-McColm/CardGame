@@ -1,3 +1,4 @@
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.After;
@@ -8,6 +9,7 @@ import org.junit.AfterClass;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * The test class testNonexistantPackFile.
@@ -15,12 +17,12 @@ import java.lang.reflect.Method;
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class testPackFileValidity
+public class testPack
 {
     /**
      * Default constructor for test class testNonexistantPackFile
      */
-    public testPackFileValidity()
+    public testPack()
     {
     }
 
@@ -36,6 +38,43 @@ public class testPackFileValidity
         
     }
     
+    @Test
+    public void readValidPackTest() throws Exception
+    {
+        Pack testPack= new Pack();
+        testPack.readPackFile("./packFiles/validPack.txt",2);
+        ArrayList<Card> testCardList = testPack.getCardList();
+        int[] cards = {1,4,88,99,5,65,76,43,86,34,56,3,7,5,56,33};
+        ArrayList<Card> cardList = new ArrayList<Card>();
+        for (int eachCard:cards){
+            Card cardToAdd =new Card(eachCard);
+            cardList.add(cardToAdd);
+        }
+        
+        boolean areEqual=true;
+        if (cardList.size()==testCardList.size()){
+            for (int i =0; i< cardList.size(); i++){
+                if (cardList.get(i).getCardValue() != testCardList.get(i).getCardValue()){
+                    areEqual=false;
+                }
+            }
+        
+        
+
+        }else{
+            areEqual=false;
+        }
+        assertTrue(areEqual);
+    }
+    
+    @Test
+    public void testReadInvalidPack() throws Exception
+    {
+        Pack testPack= new Pack();
+        testPack.readPackFile("./packFiles/invalidCharPack.txt",2);
+        ArrayList<Card> testCardList = testPack.getCardList();
+        assertTrue(testCardList.size()==0);
+    }
 
 
     @Test

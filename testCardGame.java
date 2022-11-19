@@ -5,6 +5,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 /**
  * The test class testCardGame.
@@ -29,6 +34,49 @@ public class testCardGame
     @BeforeEach
     public void setUp()
     {
+    }
+    
+    @Test
+    public void test1PlayerWinnable(){
+        ArrayList<Card> cardList= new ArrayList<Card>();
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(2));
+        cardList.add(new Card(82));
+        cardList.add(new Card(2));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        CardGame.runGame(cardList);
+        //need to read the last lines of the file
+        assertTrue(true);
+        
+    }
+    
+    
+    
+    @Test
+    public void test2PlayerImmediateWin(){
+        ArrayList<Card> cardList= new ArrayList<Card>();
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(2));
+        cardList.add(new Card(1));
+        cardList.add(new Card(82));
+        cardList.add(new Card(1));
+        cardList.add(new Card(2));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(2));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        CardGame.runGame(cardList);
+        //need to read the last lines of the file
+        assertTrue(true);
+        
     }
     
     @Test
