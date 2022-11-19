@@ -33,6 +33,10 @@ public class testDeck
     {
     }
     
+    /**
+     * Tests that when a deck is created with a specific ID, getDeckID() returns the expected value
+     *
+     */
     @Test
     public void testGetDeckID(){
         Deck testDeck = new Deck(1);
@@ -40,6 +44,10 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that you can add a card to deck and when you call getCardList it contains that card object
+     *
+     */
     @Test
     public void testAddCard(){
         Deck testDeck = new Deck(1);
@@ -49,6 +57,10 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that you can add a card to deck and when you call removeCard() it returns that card object
+     *
+     */
     @Test
     public void testRemoveCard() {
         Deck testDeck = new Deck(1);
@@ -58,6 +70,10 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that you can add card, to deck and when you call removeCard() it returns those card objects in the expected order (first Card to be added
+     * is also the first card to be removed
+     */
     @Test
     public void testRemoveCardOrdering(){
         Deck testDeck = new Deck(1);
@@ -71,6 +87,9 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that the order of how the Cards are added to and stored in cardList is as expected (first to be added = first in list)
+     */
     @Test
     public void testGetCardListOrdering(){
         Deck testDeck = new Deck(1);
@@ -84,6 +103,9 @@ public class testDeck
         testDeck.getCardList().get(1)==testCard2 && testDeck.getCardList().get(2)==testCard3);
     }
     
+    /**
+     * Tests that the order of how the Cards are added to and stored in cardList is not something we don't expect (first to be added != last in list)
+     */
     @Test
     public void testGetCardListOrderingIsNot(){
         Deck testDeck = new Deck(1);
@@ -96,7 +118,9 @@ public class testDeck
         assertFalse(testDeck.getCardList().get(2)==testCard);
     }
     
-    
+    /**
+     * Tests that the output to the deck file when endGame() is called is what we expect when we set up a deack with cards of specific values in it
+     */
     @Test
     public void testEndGame() throws Exception{
         Deck testDeck = new Deck(1);
@@ -124,7 +148,9 @@ public class testDeck
         
     }
     
-    
+    /**
+     * Tests that when you call isDeckEmpty on a deck that isn't empty (has at least one card in it) it returns false 
+     */
     @Test
     public void testIsNonEmptyDeckEmpty() {
         Deck testDeck = new Deck(1);
@@ -134,6 +160,9 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that when you call isDeckEmpty on a deck that is empty (no cards in it) it returns true 
+     */
     @Test
     public void testIsEmptyDeckEmpty() {
         Deck testDeck = new Deck(1);
@@ -141,6 +170,9 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that when you call isDeckFull on a deck that isn't full (has less than 4 cards in it) it returns false 
+     */
     @Test
     public void testIsNonFullDeckFull() throws Exception{
         Deck testDeck = new Deck(1);
@@ -150,6 +182,9 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that when you call isDeckFull on a deck that is full (has at least 4 cards in it) it returns true 
+     */
     @Test
     public void testIsFullDeckFull() throws Exception{
         Deck testDeck = new Deck(1);
@@ -165,6 +200,9 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that when you call isDeckTooBig on a deck that is too big (has more than 4 cards in it) it returns true 
+     */
     @Test
     public void testBigDeckIsTooBig() throws Exception{
         Deck testDeck = new Deck(1);
@@ -182,6 +220,9 @@ public class testDeck
         
     }
     
+    /**
+     * Tests that when you call isDeckTooBig on a deck that is not too big (does not have more than 4 cards in it) it returns true 
+     */
     @Test
     public void testSmallDeckIsTooBig() throws Exception{
         Deck testDeck = new Deck(1);
@@ -199,7 +240,7 @@ public class testDeck
     
     
     /**
-     * Tears down the test fixture.
+     * Tears down the test fixture. Need to delete any deck output files created
      *
      * Called after every test case method.
      */

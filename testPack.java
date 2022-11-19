@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class testPack
 {
     /**
-     * Default constructor for test class testNonexistantPackFile
+     * Default constructor for test class testPack
      */
     public testPack()
     {
@@ -38,6 +38,10 @@ public class testPack
         
     }
     
+    /**
+     * Tests that when a valid pack file is read in, the correct values are used to make cards and construct the card list in the correct order with the
+     *correct values
+     */
     @Test
     public void readValidPackTest() throws Exception
     {
@@ -67,6 +71,10 @@ public class testPack
         assertTrue(areEqual);
     }
     
+    /**
+     * Tests that when a invalid pack file is read in, the cardList is not constucted (is empty) 
+     *
+     */
     @Test
     public void testReadInvalidPack() throws Exception
     {
@@ -76,7 +84,10 @@ public class testPack
         assertTrue(testCardList.size()==0);
     }
 
-
+    /**
+     * Tests that a valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the checkFileValidity method
+     *
+     */
     @Test
     public void validPackTest() throws Exception
     {
@@ -96,6 +107,11 @@ public class testPack
         assertTrue (testPack.getValidity());
     }
     
+    /**
+     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the 
+     * checkFileValidity method. This pack file is for 3 players instead of 2
+     *
+     */
     @Test
     public void longerValidPackTest() throws Exception
     {
@@ -115,6 +131,34 @@ public class testPack
         assertTrue (testPack.getValidity());
     }
     
+    /**
+     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the 
+     * checkFileValidity method. This pack file is for 100 players instead of 2
+     *
+     */
+    @Test
+    public void longestValidPackTest() throws Exception
+    {
+        Pack testPack= new Pack();
+        Class packClass = testPack.getClass();
+        Field fileName = packClass.getDeclaredField("fileName");
+        fileName.setAccessible(true);
+        fileName.set(testPack, "./packFiles/longestValidPack.txt");
+        Field nPlayers = packClass.getDeclaredField("nPlayers");
+        nPlayers.setAccessible(true);
+        nPlayers.set(testPack, 100);
+        Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
+        checkFileValidity.setAccessible(true);
+        checkFileValidity.invoke(testPack);
+        
+
+        assertTrue (testPack.getValidity());
+    }
+    
+    /**
+     * Tests that a invalid pack file (is too short for 2 players) is marked as invalid by the checkFileValidity method
+     *
+     */
     @Test
     public void testShortPack() throws Exception
     {
@@ -134,6 +178,10 @@ public class testPack
         assertFalse (testPack.getValidity());
     }
     
+    /**
+     * Tests that a invalid pack file (is too long for 2 players) is marked as invalid by the checkFileValidity method
+     *
+     */
     @Test
     public void testLongPack() throws Exception
     {
@@ -153,6 +201,10 @@ public class testPack
         assertFalse (testPack.getValidity());
     }
     
+    /**
+     * Tests that a invalid pack file (contains invalid character(non integers)) is marked as invalid by the checkFileValidity method
+     *
+     */
     @Test
     public void testInvalidCharPack() throws Exception
     {
@@ -172,6 +224,10 @@ public class testPack
         assertFalse (testPack.getValidity());
     }
     
+    /**
+     * Tests that a valid pack file that contains 0s is marked as valid by the checkFileValidity method
+     *
+     */
     @Test
     public void testZeroPack() throws Exception
     {
@@ -191,6 +247,10 @@ public class testPack
         assertTrue (testPack.getValidity());
     }
     
+    /**
+     * Tests that a invalid pack file (contains negative integers) is marked as invalid by the checkFileValidity method
+     *
+     */
     @Test
     public void testNegativePack() throws Exception
     {
@@ -210,6 +270,10 @@ public class testPack
         assertFalse (testPack.getValidity());
     }
     
+    /**
+     * Tests that a invalid pack file (is empty) is marked as invalid by the checkFileValidity method
+     *
+     */
     @Test
     public void testEmptyPack() throws Exception
     {
@@ -229,6 +293,10 @@ public class testPack
         assertFalse (testPack.getValidity());
     }
     
+    /**
+     * Tests that a nonexistant pack file  is marked as invalid by the checkFileValidity method
+     *
+     */
     @Test
     public void testNonexistantPackFile() throws Exception
     {

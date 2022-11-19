@@ -36,6 +36,9 @@ public class testCardGame
     {
     }
     
+    /**
+     * Tests that a game with 1 player can finish and that 
+     */
     @Test
     public void test1PlayerWinnable(){
         ArrayList<Card> cardList= new ArrayList<Card>();
@@ -54,7 +57,9 @@ public class testCardGame
     }
     
     
-    
+    /**
+     * Tests that a game with 2 players with one player winning immediately
+     */
     @Test
     public void test2PlayerImmediateWin(){
         ArrayList<Card> cardList= new ArrayList<Card>();
@@ -79,6 +84,9 @@ public class testCardGame
         
     }
     
+    /**
+     * Tests that the dealCards method deals out known cards to players in the expected order
+     */
     @Test
     public void testDealCards(){
         Deck[] gameDecks = new Deck[2];
@@ -115,6 +123,9 @@ public class testCardGame
         
     }
     
+    /**
+     * Tests that the dealCards method doesn't deal out known cards to players in an unexpected order
+     */
     @Test
     public void testDealCardsFalse(){
         Deck[] gameDecks = new Deck[2];
