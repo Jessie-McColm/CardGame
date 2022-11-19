@@ -134,7 +134,7 @@ public class CardGame {
 
     ArrayList<Card> cardList = new ArrayList<Card>();
     cardList = cardPack.getCardList();
-
+    readInput.close();
     return cardList;
 
   }
