@@ -135,19 +135,9 @@ public class testCardGame
           FileInputStream fis = new FileInputStream(file);
           BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 
-          String currentLine1;
-          String currentLine2;
-          String currentLine3;
-
-          String lastlineA="";
-          String lastlineB="";
-         
-
-          while( ((currentLine1 = br.readLine()) != null) && ((currentLine2 = br.readLine()) != null) && ((currentLine3 = br.readLine()) != null)){
-            lastlineA = currentLine1;
-            lastlineB = currentLine2;
-            
-          }
+          String lastlineA=br.readLine();
+          String lastlineB=br.readLine();
+          
 
           br.close();
 
