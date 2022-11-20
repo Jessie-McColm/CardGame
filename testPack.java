@@ -32,7 +32,7 @@ public class testPack
      * Called before every test case method.
      */
     @BeforeEach
-    public void setUp() throws Exception
+    public void setUp()
     {
        
         
@@ -43,7 +43,7 @@ public class testPack
      *correct values
      */
     @Test
-    public void readValidPackTest() throws Exception
+    public void readValidPackTest() 
     {
         Pack testPack= new Pack();
         testPack.readPackFile("./packFiles/validPack.txt",2);
@@ -76,7 +76,7 @@ public class testPack
      *
      */
     @Test
-    public void testReadInvalidPack() throws Exception
+    public void testReadInvalidPack()
     {
         Pack testPack= new Pack();
         testPack.readPackFile("./packFiles/invalidCharPack.txt",2);
