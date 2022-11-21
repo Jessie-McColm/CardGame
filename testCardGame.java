@@ -124,7 +124,7 @@ public class testCardGame
           br.close();
 
            allLinesEqual=(lastline1.equals("player 1 wins") && lastline2.equals("player 1 exits") && lastline3.equals("player 1 final hand: 1 1 1 1"));
-           
+
         } catch (IOException e){
             //if an error occurs, the test should fail
           e.printStackTrace();
@@ -134,26 +134,36 @@ public class testCardGame
           File file = new File("player2_output.txt");
           FileInputStream fis = new FileInputStream(file);
           BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-
-          String lastlineA=br.readLine();
-          String lastlineB=br.readLine();
           
+          String currentLine1;
+          String currentLine2;
+          String currentLine3;
+
+          String lastlineA="";
+          String lastlineB="";
+
+          while( ((currentLine1 = br.readLine()) != null) && ((currentLine2 = br.readLine()) != null) && ((currentLine3 = br.readLine()) != null)){
+            lastlineA = currentLine1;
+            lastlineB = currentLine2;
+          }
+
+
 
           br.close();
 
            allLinesEqual2=(lastlineA.equals("player 1 has informed player 2 that player 1 has won") && lastlineB.equals("player 2 exits") );
-          
+
         } catch (IOException e){
             //if an error occurs, the test should fail
           e.printStackTrace();
           assertTrue(false);
         }
-        
+
         assertTrue(allLinesEqual && allLinesEqual2);
 
     }
-    
-    
+
+
 
     /**
      * Tests that the dealCards method deals out known cards to players in the expected order
@@ -244,19 +254,19 @@ public class testCardGame
         try{
             File fileToDelete = new File("player1_output.txt");
             fileToDelete.delete();
-            
+
             fileToDelete = new File("player2_output.txt");
             fileToDelete.delete();
-            
+
             fileToDelete = new File("deck1_output.txt");
             fileToDelete.delete();
-            
+
             fileToDelete = new File("deck2_output.txt");
             fileToDelete.delete();
-            
-            
+
+
         }catch(Exception e) {
-            
+
         }
     }
 }

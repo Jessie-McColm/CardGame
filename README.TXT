@@ -1,12 +1,4 @@
-------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all they need to know. The comments should usually include at least:
-------------------------------------------------------------------------
-
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+To run our tests, they should be opened in the latest version of BlueJ.
+The project should be compiled when opened and then the ‘run tests’ tool should be used.
+This can be found under the tools menu in ‘testing’ or using CTRL + Shift + T in
+Windows or CMD + Shift + T on Mac.

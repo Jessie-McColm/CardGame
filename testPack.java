@@ -1,11 +1,8 @@
 
 import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Before;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.AfterClass;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -34,16 +31,16 @@ public class testPack
     @BeforeEach
     public void setUp()
     {
-       
-        
+
+
     }
-    
+
     /**
      * Tests that when a valid pack file is read in, the correct values are used to make cards and construct the card list in the correct order with the
      *correct values
      */
     @Test
-    public void readValidPackTest() 
+    public void readValidPackTest()
     {
         Pack testPack= new Pack();
         testPack.readPackFile("./packFiles/validPack.txt",2);
@@ -54,7 +51,7 @@ public class testPack
             Card cardToAdd =new Card(eachCard);
             cardList.add(cardToAdd);
         }
-        
+
         boolean areEqual=true;
         if (cardList.size()==testCardList.size()){
             for (int i =0; i< cardList.size(); i++){
@@ -62,17 +59,17 @@ public class testPack
                     areEqual=false;
                 }
             }
-        
-        
+
+
 
         }else{
             areEqual=false;
         }
         assertTrue(areEqual);
     }
-    
+
     /**
-     * Tests that when a invalid pack file is read in, the cardList is not constucted (is empty) 
+     * Tests that when a invalid pack file is read in, the cardList is not constucted (is empty)
      *
      */
     @Test
@@ -102,13 +99,13 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertTrue (testPack.getValidity());
     }
-    
+
     /**
-     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the 
+     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the
      * checkFileValidity method. This pack file is for 3 players instead of 2
      *
      */
@@ -126,13 +123,13 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertTrue (testPack.getValidity());
     }
-    
+
     /**
-     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the 
+     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the
      * checkFileValidity method. This pack file is for 100 players instead of 2
      *
      */
@@ -150,11 +147,11 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertTrue (testPack.getValidity());
     }
-    
+
     /**
      * Tests that a invalid pack file (is too short for 2 players) is marked as invalid by the checkFileValidity method
      *
@@ -173,11 +170,11 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertFalse (testPack.getValidity());
     }
-    
+
     /**
      * Tests that a invalid pack file (is too long for 2 players) is marked as invalid by the checkFileValidity method
      *
@@ -196,11 +193,11 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertFalse (testPack.getValidity());
     }
-    
+
     /**
      * Tests that a invalid pack file (contains invalid character(non integers)) is marked as invalid by the checkFileValidity method
      *
@@ -219,11 +216,11 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertFalse (testPack.getValidity());
     }
-    
+
     /**
      * Tests that a valid pack file that contains 0s is marked as valid by the checkFileValidity method
      *
@@ -242,11 +239,11 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertTrue (testPack.getValidity());
     }
-    
+
     /**
      * Tests that a invalid pack file (contains negative integers) is marked as invalid by the checkFileValidity method
      *
@@ -265,11 +262,11 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertFalse (testPack.getValidity());
     }
-    
+
     /**
      * Tests that a invalid pack file (is empty) is marked as invalid by the checkFileValidity method
      *
@@ -288,11 +285,11 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertFalse (testPack.getValidity());
     }
-    
+
     /**
      * Tests that a nonexistant pack file  is marked as invalid by the checkFileValidity method
      *
@@ -311,19 +308,19 @@ public class testPack
         Method checkFileValidity= packClass.getDeclaredMethod("checkFileValidity");
         checkFileValidity.setAccessible(true);
         checkFileValidity.invoke(testPack);
-        
+
 
         assertFalse (testPack.getValidity());
     }
-    
-    
-    
+
+
+
     /**
      * Tears down the test fixture.
      *
      * Called after every test case method.
      */
-    @After
+    @AfterEach
     public void tearDown()
     {
     }
