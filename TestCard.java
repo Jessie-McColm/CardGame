@@ -1,5 +1,3 @@
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,8 +6,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The test class TestCard.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @Jessie McColm and Lucia Adams
  */
 public class TestCard
 {
@@ -29,44 +26,48 @@ public class TestCard
     public void setUp()
     {
     }
-    
-    
+
+
     /**
-     * Tests that when a Card with a specific value is created the "getCardValue" function returns the expected value
+     * Tests that when a Card with a specific value is created the "getCardValue"
+     * function returns the expected value
      *
      */
-    @Test 
+    @Test
     public void testGetCardValue() {
         Card testCard=new Card(1);
         assertTrue(testCard.getCardValue()==1);
     }
-    
+
     /**
-     * Tests that when a Card with a specific value is created the "getCardValue" function does not return a different value
+     * Tests that when a Card with a specific value is created the "getCardValue"
+     * function does not return a different value
      *
      */
-    @Test 
+    @Test
     public void testGetCardValueIsNot() {
         Card testCard=new Card(1);
         assertFalse(testCard.getCardValue()==-1);
     }
-    
-    
+
+
     /**
-     * Tests that when a Card with a specific value is created the "toString" function returns the expected value (a string version of the Card's value)
+     * Tests that when a Card with a specific value is created the "toString"
+     * function returns the expected value (a string version of the Card's value)
      *
      */
-    @Test 
+    @Test
     public void testCardToString() {
         Card testCard=new Card(1);
         assertTrue(testCard.toString().equals("1"));
     }
-    
+
     /**
-     * Tests that when a Card with a specific value is created the "toString" function doesn't return a different value to what is expected
-     *(a string version of the Card's value)
+     * Tests that when a Card with a specific value is created the "toString"
+     * function doesn't return a different value to what is expected
+     * (a string version of the Card's value)
      */
-    @Test 
+    @Test
     public void testCardToStringIsNot() {
         Card testCard=new Card(1);
         assertFalse(testCard.toString().equals("5"));

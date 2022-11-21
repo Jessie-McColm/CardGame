@@ -4,7 +4,6 @@
  * Methods: getCardValue, toString
  *
  * @Jessie McColm and Lucia Adams
- * @version (a version number or a date)
  */
 public class Card {
 

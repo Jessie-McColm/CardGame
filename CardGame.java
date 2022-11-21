@@ -1,23 +1,29 @@
-/**
- * Main class that runs the card game
- *
- * @Jessie McColm and Lucia Adams
- * @version (a version number or a date)
- */
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Main class that runs the card game
+ *
+ * Methods: main, runGame, setUpCards, dealCards
+ *
+ * @Jessie McColm and Lucia Adams
+ */
 public class CardGame {
 
   public static void main(String[] args){
 
-    // takes user inputs
     ArrayList<Card> cardList = setUpCards();
     runGame(cardList);
-  
+
   }
 
+  /**
+   * Method to run and stop the player threads
+   *
+   * @param  cardList list of cards in the game
+   * @return  None
+   */
   public static void runGame(ArrayList<Card> cardList){
 
     int numOfPlayers = cardList.size()/8;
@@ -27,7 +33,6 @@ public class CardGame {
     Deck[] gameDecks = new Deck[numOfPlayers];
     Player[] gamePlayers = new Player[numOfPlayers];
     Thread[] gameThreads = new Thread[numOfPlayers];
-
 
     // loop through to make the decks
     for (int i=0; i< numOfPlayers; i++){
@@ -49,7 +54,7 @@ public class CardGame {
     }
 
     // if thread wins it stops itself by setting alive to false
-    // tis checks if soemhting has won and if it has then it kills the others
+    // checks if something has won and if it has then it kills the others
     boolean loop = true;
     while (loop){
       for (int i=0; i< numOfPlayers; i++){
@@ -82,9 +87,6 @@ public class CardGame {
     for (Deck eachDeck: gameDecks){
       eachDeck.endGame();
     }
-
-
-
 
   }
 
@@ -139,6 +141,14 @@ public class CardGame {
 
   }
 
+  /**
+   * Method to deal the cards out to players and decks
+   *
+   * @param  cardsInGame list of cards in the game
+   * @param  decksInGame list of decks in the game
+   * @param  playersInGame list of players in the game
+   * @return  None
+   */
   public static void dealCards(ArrayList<Card> cardsInGame, Deck[] decksInGame,
   Player[] playersInGame){
 

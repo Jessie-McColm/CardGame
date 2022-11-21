@@ -1,5 +1,3 @@
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +12,7 @@ import java.io.IOException;
 /**
  * The test class testCardGame.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @Jessie McColm and Lucia Adams
  */
 public class testCardGame
 {
@@ -37,7 +34,8 @@ public class testCardGame
     }
 
     /**
-     * Tests that a game with 1 player can finish and the last lines of the output file read as we expect
+     * Tests that a game with 1 player can finish and the last lines of the
+     * output file read as we expect
      */
     @Test
     public void test1PlayerWinnable(){
@@ -85,8 +83,10 @@ public class testCardGame
 
 
     /**
-     * Tests that a game with 2 players with one player winning immediately ends and that player 1 writes 3 lines to their
-     * output file with our expected output. Also tests last lines of player 2s output is as we expect ie player 1 won
+     * Tests that a game with 2 players with one player winning immediately
+     * ends and that player 1 writes 3 lines to their
+     * output file with our expected output. Also tests last lines of
+     * player 2s output is as we expect ie player 1 won
      */
     @Test
     public void test2PlayerImmediateWin(){
@@ -130,11 +130,13 @@ public class testCardGame
           e.printStackTrace();
           assertTrue(false);
         }
+
+        // Tests last line of Player 2 here
         try{
           File file = new File("player2_output.txt");
           FileInputStream fis = new FileInputStream(file);
           BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-          
+
           String currentLine1;
           String currentLine2;
           String currentLine3;
@@ -147,11 +149,9 @@ public class testCardGame
             lastlineB = currentLine2;
           }
 
-
-
           br.close();
 
-           allLinesEqual2=(lastlineA.equals("player 1 has informed player 2 that player 1 has won") && lastlineB.equals("player 2 exits") );
+          allLinesEqual2=(lastlineA.equals("player 1 has informed player 2 that player 1 has won") && lastlineB.equals("player 2 exits") );
 
         } catch (IOException e){
             //if an error occurs, the test should fail
@@ -166,7 +166,8 @@ public class testCardGame
 
 
     /**
-     * Tests that the dealCards method deals out known cards to players in the expected order
+     * Tests that the dealCards method deals out known cards to
+     * players in the expected order
      */
     @Test
     public void testDealCards(){
@@ -205,7 +206,8 @@ public class testCardGame
     }
 
     /**
-     * Tests that the dealCards method doesn't deal out known cards to players in an unexpected order
+     * Tests that the dealCards method doesn't deal out known cards to players
+     * in an unexpected order
      */
     @Test
     public void testDealCardsFalse(){
@@ -220,7 +222,6 @@ public class testCardGame
         for (int i=0; i< 2; i++){
               gameDecks[i] = new Deck(i+1);
             }
-
 
         for (int i=0; i< 2; i++){
           gamePlayers[i] = new Player(i+1, gameDecks[(i+1)%2], gameDecks[i]);

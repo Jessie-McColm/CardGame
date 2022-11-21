@@ -13,7 +13,6 @@ import java.io.IOException;
  * Methods: getValidity, getCardList, readPackFile, checkFileValidity
  *
  * @Jessie McColm and Lucia Adams
- * @version (a version number or a date)
  */
 public class Pack{
 
@@ -31,11 +30,10 @@ public class Pack{
 
 
     /**
-     * Getter method for cardList
-     * Cardlist is an ArrayList of Card objects in the pack
+     * Getter method for validity
      *
      * @param  None
-     * @return cardList
+     * @return Boolean valid
      */
     public boolean getValidity(){
         return this.valid;
@@ -94,8 +92,7 @@ public class Pack{
      * Checks file is valid - ie single non-negative integer
      * value, and has 8n rows
      *
-     * @param fileName name of file to check validity of
-     * @param nplayers number of players to check the file is valid for
+     * @param None
      * @return valid  boolean of whether pack is valid or not
      */
     private void checkFileValidity(){

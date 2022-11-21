@@ -1,4 +1,3 @@
-
 import static org.junit.Assert.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
@@ -9,10 +8,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 /**
- * The test class testNonexistantPackFile.
+ * The test class testPack
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @Jessie McColm and Lucia Adams
  */
 public class testPack
 {
@@ -31,13 +29,12 @@ public class testPack
     @BeforeEach
     public void setUp()
     {
-
-
     }
 
     /**
-     * Tests that when a valid pack file is read in, the correct values are used to make cards and construct the card list in the correct order with the
-     *correct values
+     * Tests that when a valid pack file is read in, the correct values are used
+     * to make cards and construct the card list in the correct order with the
+     * correct values
      */
     @Test
     public void readValidPackTest()
@@ -60,8 +57,6 @@ public class testPack
                 }
             }
 
-
-
         }else{
             areEqual=false;
         }
@@ -69,7 +64,8 @@ public class testPack
     }
 
     /**
-     * Tests that when a invalid pack file is read in, the cardList is not constucted (is empty)
+     * Tests that when a invalid pack file is read in, the cardList is not
+     * constucted (is empty)
      *
      */
     @Test
@@ -82,7 +78,8 @@ public class testPack
     }
 
     /**
-     * Tests that a valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the checkFileValidity method
+     * Tests that a valid pack file (i.e. is the correct length and only
+     * contains positive integers) is marked as valid by the checkFileValidity method
      *
      */
     @Test
@@ -105,7 +102,8 @@ public class testPack
     }
 
     /**
-     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the
+     * Tests that a longer valid pack file (i.e. is the correct length and only
+     * contains positive integers) is marked as valid by the
      * checkFileValidity method. This pack file is for 3 players instead of 2
      *
      */
@@ -129,7 +127,8 @@ public class testPack
     }
 
     /**
-     * Tests that a longer valid pack file (i.e. is the correct length and only contains positive integers) is marked as valid by the
+     * Tests that a longer valid pack file (i.e. is the correct length and
+     * only contains positive integers) is marked as valid by the
      * checkFileValidity method. This pack file is for 100 players instead of 2
      *
      */
@@ -153,7 +152,8 @@ public class testPack
     }
 
     /**
-     * Tests that a invalid pack file (is too short for 2 players) is marked as invalid by the checkFileValidity method
+     * Tests that a invalid pack file (is too short for 2 players) is marked as
+     * invalid by the checkFileValidity method
      *
      */
     @Test
@@ -176,7 +176,8 @@ public class testPack
     }
 
     /**
-     * Tests that a invalid pack file (is too long for 2 players) is marked as invalid by the checkFileValidity method
+     * Tests that a invalid pack file (is too long for 2 players) is marked
+     *  as invalid by the checkFileValidity method
      *
      */
     @Test
@@ -199,7 +200,8 @@ public class testPack
     }
 
     /**
-     * Tests that a invalid pack file (contains invalid character(non integers)) is marked as invalid by the checkFileValidity method
+     * Tests that a invalid pack file (contains invalid character(non integers))
+     * is marked as invalid by the checkFileValidity method
      *
      */
     @Test
@@ -222,7 +224,8 @@ public class testPack
     }
 
     /**
-     * Tests that a valid pack file that contains 0s is marked as valid by the checkFileValidity method
+     * Tests that a valid pack file that contains 0s is marked as valid by
+     * the checkFileValidity method
      *
      */
     @Test
@@ -245,7 +248,8 @@ public class testPack
     }
 
     /**
-     * Tests that a invalid pack file (contains negative integers) is marked as invalid by the checkFileValidity method
+     * Tests that a invalid pack file (contains negative integers) is marked as
+     * invalid by the checkFileValidity method
      *
      */
     @Test
@@ -268,7 +272,8 @@ public class testPack
     }
 
     /**
-     * Tests that a invalid pack file (is empty) is marked as invalid by the checkFileValidity method
+     * Tests that a invalid pack file (is empty) is marked as invalid by the
+     * checkFileValidity method
      *
      */
     @Test
@@ -291,7 +296,8 @@ public class testPack
     }
 
     /**
-     * Tests that a nonexistant pack file  is marked as invalid by the checkFileValidity method
+     * Tests that a nonexistant pack file is marked as invalid by the
+     * checkFileValidity method
      *
      */
     @Test
@@ -312,8 +318,6 @@ public class testPack
 
         assertFalse (testPack.getValidity());
     }
-
-
 
     /**
      * Tears down the test fixture.

@@ -10,7 +10,6 @@ import java.io.BufferedWriter;
  * checkVictory, win, loss, kill, endGame, pickAndDrop, run
  *
  * @Jessie McColm and Lucia Adams
- * @version (a version number or a date)
  */
 public class Player implements Runnable{
 
@@ -34,9 +33,7 @@ public class Player implements Runnable{
         hasWon = false;
         playerFile = String.format("player%d_output.txt", playerID);
 
-        // find better way of creating file if doesnt exist and
-        // overridng one that does
-        // also shouldnt be in try except
+
         try{
           FileWriter fileToWrite = new FileWriter(playerFile);
           BufferedWriter output = new BufferedWriter(fileToWrite);
@@ -59,7 +56,7 @@ public class Player implements Runnable{
      * Getter method for the players hand (an ArrayList of Cards)
      *
      * @param None
-     * @return hand
+     * @return ArrayList<Card> hand
      */
     public ArrayList<Card> getHand()
     {
@@ -71,7 +68,7 @@ public class Player implements Runnable{
      * hasWon used to track if Player has had a winning hand
      *
      * @param None
-     * @return None
+     * @return Boolean hasWon
      */
     public Boolean getHasWon(){
       return this.hasWon;
@@ -101,14 +98,12 @@ public class Player implements Runnable{
     }
 
     /**
-     * Method to add Card object to the Deck list (to bottom of deck)
+     * Method to add Card object to the hand
      *
      * @param  cardName  Card object to add
      * @return None
      */
-    public void addCard(Card cardName)
-    {
-      // check whether full of not done in Player
+    public void addCard(Card cardName){
       hand.add(0, cardName);
     }
 
@@ -192,7 +187,7 @@ public class Player implements Runnable{
     /**
      * Write to player file that they have exited and write their hand
      *
-     * @param  endMessage  message deatilign a win or loss
+     * @param  endMessage  message detailing a win or loss
      * @return  None
      */
     private void endGame(String endMessage){
@@ -216,7 +211,7 @@ public class Player implements Runnable{
      * Method to pick up a card from the corresponding pick deck
      * and drop a card to the drop deck
      * The Player favours cards with the same value as its ID,
-     * otherwsie drops any random card
+     * otherwise drops any random card
      *
      * @param  None
      * @return  None
@@ -229,7 +224,7 @@ public class Player implements Runnable{
 
         Card pickedCard = pickDeck.removeCard();
 
-        
+
         ArrayList<Card> possibleDrops = new ArrayList<Card>();
 
         for (Card eachCard : hand){

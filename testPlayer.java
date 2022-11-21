@@ -1,5 +1,3 @@
-
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,8 +14,7 @@ import java.lang.reflect.Method;
 /**
  * The test class testPlayer.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @Jessie McColm and Lucia Adams
  */
 public class testPlayer
 {
@@ -39,7 +36,8 @@ public class testPlayer
     }
 
     /**
-     * Tests that when you create a player with a specific ID, getPlayerID will return that ID
+     * Tests that when you create a player with a specific ID,
+     * getPlayerID will return that ID
      */
     @Test
     public void testGetPlayerID() {
@@ -50,7 +48,8 @@ public class testPlayer
     }
 
     /**
-     * Tests that when you create a player with a specific ID, getPlayerID will not return something that isn't that ID
+     * Tests that when you create a player with a specific ID, getPlayerID will
+     * not return something that isn't that ID
      */
     @Test
     public void testFalseGetPlayerID() {
@@ -62,7 +61,8 @@ public class testPlayer
 
 
     /**
-     * Tests that when you create a player, you can add a card to their cardList, and getHand() will return that card
+     * Tests that when you create a player, you can add a card to their
+     * cardList, and getHand() will return that card
      */
     @Test
     public void testAddCard(){
@@ -75,7 +75,8 @@ public class testPlayer
     }
 
     /**
-     * Tests that when you create a player, you can add a card to their cardList, and getHand() will not return somthing that isn't that card
+     * Tests that when you create a player, you can add a card to their cardList,
+     * and getHand() will not return somthing that isn't that card
      */
     @Test
     public void testFalseAddCard(){
@@ -88,12 +89,10 @@ public class testPlayer
         assertNotEquals(testPlayer.getHand().get(0),testCard2);
     }
 
-
-
-
     /**
-     * Tests that when you add 4 matching cards to a Player (so that they are in a state where they should win the game) calling checkVictory will return
-     * true
+     * Tests that when you add 4 matching cards to a Player
+     * (so that they are in a state where they should win the game)
+     * calling checkVictory will return true
      */
     @Test
     public void testCheckVictoryWhenWinner() {
@@ -110,8 +109,9 @@ public class testPlayer
     }
 
     /**
-     * Tests that when you add 4 non matching cards to a Player (so that they are in a state where they shouldn't win the game) calling checkVictory
-     * will return false
+     * Tests that when you add 4 non matching cards to a Player
+     * (so that they are in a state where they shouldn't win the game)
+     * calling checkVictory will return false
      */
     @Test
     public void testCheckVictoryWhenNotWinner() {
@@ -123,14 +123,15 @@ public class testPlayer
         testPlayer.addCard(new Card(1));
         testPlayer.addCard(new Card(2));
         assertFalse(testPlayer.checkVictory());
-
-
     }
 
     /**
-     * Tests that a player picks up the correct card from the correct pack, that a player drops the correct card to the correct pack, and that the player's
-     * hand after this is what we expect. Tests this by checking that the player output file is what we expect.
-     * An exception needs to be throwable due to the use of reflection, but it shouldn't occur because we know a method with that name exists
+     * Tests that a player picks up the correct card from the correct pack,
+     * that a player drops the correct card to the correct pack,
+     * and that the player's hand after this is what we expect.
+     * Tests this by checking that the player output file is what we expect.
+     * An exception needs to be throwable due to the use of reflection,
+     * but it shouldn't occur because we know a method with that name exists
      */
     @Test
     public void testPickAndDrop() throws Exception{
@@ -180,9 +181,12 @@ public class testPlayer
     }
 
     /**
-     * Tests that a player picks up the correct card from the correct pack, that a player drops one of the possible correct cards to the correct pack,
-     * and that the player's hand after this is one of the 2 hands possible. Tests this by checking that the player output file is what we expect.
-     * An exception needs to be throwable due to the use of reflection, but it shouldn't occur because we know a method with that name exists
+     * Tests that a player picks up the correct card from the correct pack,
+     * that a player drops one of the possible correct cards to the correct pack,
+     * and that the player's hand after this is one of the 2 hands possible.
+     * Tests this by checking that the player output file is what we expect.
+     * An exception needs to be throwable due to the use of reflection,
+     * but it shouldn't occur because we know a method with that name exists
      */
     @Test
     public void testPickAndDropWithRandomness() throws Exception{
@@ -236,8 +240,10 @@ public class testPlayer
     }
 
     /**
-     * Tests that a player does not drop a card that matches their playerID. Tests this by checking that the player output file is what we expect.
-     * An exception needs to be throwable due to the use of reflection, but it shouldn't occur because we know a method with that name exists
+     * Tests that a player does not drop a card that matches their playerID.
+     * Tests this by checking that the player output file is what we expect.
+     * An exception needs to be throwable due to the use of reflection,
+     * but it shouldn't occur because we know a method with that name exists
      */
     @Test
     public void testPickAndDropWithRandomnessDoesNotDropMatchingCards() throws Exception{
@@ -284,9 +290,11 @@ public class testPlayer
 
 
     /**
-     * Tests that the win() method writes the expected output to the expected player output file. We set up a player with specific cards and expect these
-     * to be correctly detailed in the output. This method also tests endGame, as endGame is called in win() If an error occurs in the file reading stage,
-     * the test fails
+     * Tests that the win() method writes the expected output to the expected
+     * player output file. We set up a player with specific cards and expect these
+     * to be correctly detailed in the output. This method also tests
+     * endGame, as endGame is called in win()
+     * If an error occurs in the file reading stage, the test fails
      */
     @Test
     public void testWin(){
@@ -319,9 +327,12 @@ public class testPlayer
     }
 
     /**
-     * Tests that the loss() method writes the expected output to the expected player output file. We set up a player with specific cards and expect these
-     * to be correctly detailed in the output. We also specify a winning player, and also expect to see this reflected in the output. This method also
-     * tests endGame, as endGame is called in loss() If an error occurs in the file reading stage, the test fails
+     * Tests that the loss() method writes the expected output to the expected
+     * player output file. We set up a player with specific cards and expect these
+     * to be correctly detailed in the output. We also specify a winning player,
+     * and also expect to see this reflected in the output. This method also
+     * tests endGame, as endGame is called in loss()
+     * If an error occurs in the file reading stage, the test fails
      */
     @Test
     public void testLoss(){
@@ -353,7 +364,8 @@ public class testPlayer
     }
 
     /**
-     * Tests that when you create a player, you can add cards to their cardList, and getHand() will return the cards in the expected order
+     * Tests that when you create a player, you can add cards to their cardList,
+     * and getHand() will return the cards in the expected order
      */
     @Test
     public void testGetHand(){
@@ -379,8 +391,9 @@ public class testPlayer
 
 
     /**
-     * Tests that when you add 3 matching cards to a Player (so that they are in a state where they shouldn't win the game) calling checkVictory will
-     * return false
+     * Tests that when you add 3 matching cards to a Player
+     * (so that they are in a state where they shouldn't win the game)
+     * calling checkVictory will return false
      */
     @Test
     public void testCheckVictoryWhenHasTooFewCards(){
@@ -397,7 +410,8 @@ public class testPlayer
     }
 
     /**
-     * Tests that when you add 5 matching cards to a Player (so that they are in a state where they shouldn't win the game) calling checkVictory will
+     * Tests that when you add 5 matching cards to a Player (so that they are
+     * in a state where they shouldn't win the game) calling checkVictory will
      * return false
      */
     @Test
@@ -419,7 +433,9 @@ public class testPlayer
     }
 
     /**
-     * Tests that when you call kill() on a player the run() method is able to return and the execution can pass to the line of code making the test pass
+     * Tests that when you call kill() on a player the run() method is able
+     * to return and the execution can pass to the line of code making the
+     * test pass
      */
     @Test
     public void testKill(){
@@ -434,7 +450,8 @@ public class testPlayer
 
 
     /**
-     * Tears down the test fixture. Deletes player1_output file so it can be writted to and used in different test
+     * Tears down the test fixture. Deletes player1_output file so it
+     * can be writted to and used in different test
      *
      * Called after every test case method.
      */

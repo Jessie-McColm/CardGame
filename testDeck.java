@@ -11,8 +11,7 @@ import java.io.IOException;
 /**
  * The test class testDeck.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @Jessie McColm and Lucia Adams
  */
 public class testDeck
 {
@@ -32,20 +31,22 @@ public class testDeck
     public void setUp()
     {
     }
-    
+
     /**
-     * Tests that when a deck is created with a specific ID, getDeckID() returns the expected value
+     * Tests that when a deck is created with a specific ID, getDeckID()
+     * returns the expected value
      *
      */
     @Test
     public void testGetDeckID(){
         Deck testDeck = new Deck(1);
         assertEquals(1,testDeck.getDeckID());
-        
+
     }
-    
+
     /**
-     * Tests that you can add a card to deck and when you call getCardList it contains that card object
+     * Tests that you can add a card to a deck and when you call getCardList it
+     * contains that card object
      *
      */
     @Test
@@ -54,11 +55,12 @@ public class testDeck
         Card testCard = new Card(1);
         testDeck.addCard(testCard);
         assertEquals(testCard, testDeck.getCardList().get(0));
-        
+
     }
-    
+
     /**
-     * Tests that you can add a card to deck and when you call removeCard() it returns that card object
+     * Tests that you can add a card to deck and when you call removeCard()
+     * it returns that card object
      *
      */
     @Test
@@ -67,11 +69,12 @@ public class testDeck
         Card testCard = new Card(1);
         testDeck.addCard(testCard);
         assertEquals(testCard, testDeck.removeCard());
-        
+
     }
-    
+
     /**
-     * Tests that you can add card, to deck and when you call removeCard() it returns those card objects in the expected order (first Card to be added
+     * Tests that you can add card, to deck and when you call removeCard()
+     * it returns those card objects in the expected order (first Card to be added
      * is also the first card to be removed
      */
     @Test
@@ -84,11 +87,12 @@ public class testDeck
         testDeck.addCard(testCard2);
         testDeck.addCard(testCard3);
         assertEquals(testCard, testDeck.removeCard());
-        
+
     }
-    
+
     /**
-     * Tests that the order of how the Cards are added to and stored in cardList is as expected (first to be added = first in list)
+     * Tests that the order of how the Cards are added to and stored in cardList
+     * is as expected (first to be added = first in list)
      */
     @Test
     public void testGetCardListOrdering(){
@@ -99,12 +103,13 @@ public class testDeck
         testDeck.addCard(testCard);
         testDeck.addCard(testCard2);
         testDeck.addCard(testCard3);
-        assertTrue(testDeck.getCardList().get(0)==testCard && 
+        assertTrue(testDeck.getCardList().get(0)==testCard &&
         testDeck.getCardList().get(1)==testCard2 && testDeck.getCardList().get(2)==testCard3);
     }
-    
+
     /**
-     * Tests that the order of how the Cards are added to and stored in cardList is not something we don't expect (first to be added != last in list)
+     * Tests that the order of how the Cards are added to and stored in
+     * cardList is not something we don't expect (first to be added != last in list)
      */
     @Test
     public void testGetCardListOrderingIsNot(){
@@ -117,9 +122,10 @@ public class testDeck
         testDeck.addCard(testCard3);
         assertFalse(testDeck.getCardList().get(2)==testCard);
     }
-    
+
     /**
-     * Tests that the output to the deck file when endGame() is called is what we expect when we set up a deack with cards of specific values in it
+     * Tests that the output to the deck file when endGame() is called is
+     * what we expect when we set up a deck with cards of specific values in it
      */
     @Test
     public void testEndGame() throws Exception{
@@ -143,13 +149,11 @@ public class testDeck
             e.printStackTrace();
             assertTrue(false);
           }
-        
-        
-        
     }
-    
+
     /**
-     * Tests that when you call isDeckEmpty on a deck that isn't empty (has at least one card in it) it returns false 
+     * Tests that when you call isDeckEmpty on a deck that isn't
+     * empty (has at least one card in it) it returns false
      */
     @Test
     public void testIsNonEmptyDeckEmpty() {
@@ -157,21 +161,23 @@ public class testDeck
         Card testCard = new Card(1);
         testDeck.addCard(testCard);
         assertFalse(testDeck.isDeckEmpty());
-        
+
     }
-    
+
     /**
-     * Tests that when you call isDeckEmpty on a deck that is empty (no cards in it) it returns true 
+     * Tests that when you call isDeckEmpty on a deck that is empty
+     * (no cards in it) it returns true
      */
     @Test
     public void testIsEmptyDeckEmpty() {
         Deck testDeck = new Deck(1);
         assertTrue(testDeck.isDeckEmpty());
-        
+
     }
-    
+
     /**
-     * Tests that when you call isDeckFull on a deck that isn't full (has less than 4 cards in it) it returns false 
+     * Tests that when you call isDeckFull on a deck that isn't full
+     * (has less than 4 cards in it) it returns false
      */
     @Test
     public void testIsNonFullDeckFull() throws Exception{
@@ -179,11 +185,12 @@ public class testDeck
         Card testCard = new Card(1);
         testDeck.addCard(testCard);
         assertFalse(testDeck.isDeckFull());
-        
+
     }
-    
+
     /**
-     * Tests that when you call isDeckFull on a deck that is full (has at least 4 cards in it) it returns true 
+     * Tests that when you call isDeckFull on a deck that is full
+     * (has at least 4 cards in it) it returns true
      */
     @Test
     public void testIsFullDeckFull() throws Exception{
@@ -197,11 +204,12 @@ public class testDeck
         Card testCard4 = new Card(1);
         testDeck.addCard(testCard4);
         assertTrue(testDeck.isDeckFull());
-        
+
     }
-    
+
     /**
-     * Tests that when you call isDeckTooBig on a deck that is too big (has more than 4 cards in it) it returns true 
+     * Tests that when you call isDeckTooBig on a deck that is too big
+     * (has more than 4 cards in it) it returns true
      */
     @Test
     public void testBigDeckIsTooBig() throws Exception{
@@ -217,11 +225,12 @@ public class testDeck
         Card testCard5 = new Card(2);
         testDeck.addCard(testCard5);
         assertTrue(testDeck.isTooBig());
-        
+
     }
-    
+
     /**
-     * Tests that when you call isDeckTooBig on a deck that is not too big (does not have more than 4 cards in it) it returns true 
+     * Tests that when you call isDeckTooBig on a deck that is not too big
+     * (does not have more than 4 cards in it) it returns true
      */
     @Test
     public void testSmallDeckIsTooBig() throws Exception{
@@ -235,10 +244,10 @@ public class testDeck
         Card testCard4 = new Card(1);
         testDeck.addCard(testCard4);
         assertFalse(testDeck.isTooBig());
-        
+
     }
-    
-    
+
+
     /**
      * Tears down the test fixture. Need to delete any deck output files created
      *
@@ -251,7 +260,7 @@ public class testDeck
             File fileToDelete = new File("deck1_output.txt");
             fileToDelete.delete();
         }catch(Exception e) {
-            
+
         }
     }
 }

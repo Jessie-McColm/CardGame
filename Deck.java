@@ -11,7 +11,6 @@ import java.io.BufferedWriter;
  * isTooBig, isDeckFull, endGame
  *
  * @Jessie McColm and Lucia Adams
- * @version (a version number or a date)
  */
 public class Deck {
 
@@ -53,7 +52,7 @@ public class Deck {
      * Method to add Card object to the Deck list (to bottom of deck)
      *
      * @param  cardName  Card object to add
-     * @return  none
+     * @return  None
      */
     public synchronized void addCard(Card cardName){
       cardList.add(cardName);
@@ -128,7 +127,6 @@ public class Deck {
      * Method to output deck content to file named after deckID
      * at the end of the game
      *
-     *
      * @param  None
      * @return  None
      */
@@ -154,7 +152,4 @@ public class Deck {
           e.printStackTrace();
         }
     }
-
-
-
 }
